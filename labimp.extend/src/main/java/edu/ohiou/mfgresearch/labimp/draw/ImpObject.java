@@ -53,6 +53,12 @@ public abstract class ImpObject extends ViewObject
 		DrawableWF,
 		Drawable3D,
 		Serializable {
+	
+	  static {
+		  
+		  loadProperties (ImpObject.class, "labimp.extend");
+		  displayProperties();  	
+	  }
 	//Root BranchGroup of SceneGraph
 	private BranchGroup objRoot;
 
@@ -353,7 +359,7 @@ public abstract class ImpObject extends ViewObject
 		writer.close();
 	}
 	
-	public ImpXmlWriter getXMLWriter()  {
+	public ImpXmlWriter findXMLWriter()  {
 		ImpXmlWriter writer = null;
 		String writerName = properties
 		.getProperty(this.getClass().getName() + ".XML_WRITER", "edu.ohiou.implanner.parts.MfgPartModel$MfgPartWriter");
@@ -361,7 +367,7 @@ public abstract class ImpObject extends ViewObject
 		if (writerName != null && !writerName.equalsIgnoreCase("")) {
 			try {
 				Class handlerClass = Class.forName(writerName);
-				Constructor c = handlerClass.getConstructor(getXMLWriterArgTypes());
+				Constructor c = handlerClass.getConstructor(gettXMLWriterArgTypes());
 				writer =(ImpXmlWriter) c.newInstance(args);
 //				writer = (ImpXmlWriter) handlerClass.newInstance();
 			} catch (Exception ex) {
@@ -374,7 +380,7 @@ public abstract class ImpObject extends ViewObject
 		return writer;
 	}
 	
-	public Class [] getXMLWriterArgTypes () {
+	public Class [] gettXMLWriterArgTypes () {
 		Class [] argTypes = new Class [] {};
 		return argTypes;
 	}
