@@ -5,7 +5,9 @@ package edu.ohiou.mfgresearch.labimp.graphmodel;
 
 
 import java.util.*;
+
 import javax.swing.table.AbstractTableModel;
+
 import edu.ohiou.mfgresearch.labimp.graphmodel.gui.GraphRenderer;
 import edu.ohiou.mfgresearch.labimp.table.SquareTableModel;
 import edu.ohiou.mfgresearch.labimp.table.TableCellGenerator;
@@ -46,6 +48,22 @@ public class DefaultGraphModel implements GraphModel {
 				makeEndNode);
 	}
 	
+	/**
+	 * Constructor for initialization with object array, table cell generator 
+	 * specifying relationships and specification for start and end nodes
+	 * @param objs List of objects that make the graph
+	 * @param TableCellGenerator arcGenerator
+	 * @param makeStartNode boolean for having root node
+	 * @param makeEndNode boolean for having end Node
+	 */
+	public DefaultGraphModel(List objs, TableCellGenerator arcGenerator,
+			boolean makeStartNode,
+			boolean makeEndNode) {
+			this(objs.toArray(), arcGenerator,			
+				makeStartNode,
+				makeEndNode);
+	}
+	
 	
 	/**
 	 * Constructor for initialization with a square table model
@@ -53,10 +71,7 @@ public class DefaultGraphModel implements GraphModel {
 	 */
 	public DefaultGraphModel(SquareTableModel tableModel)
 	{
-		this.tableModel = tableModel;
-		tableModelExists = true;
-		createNodesFromList(tableModel.getColumnObjects());
-		createArcsFromTable();
+		this (tableModel, false, false);
 	}
 	
 
