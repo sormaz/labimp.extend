@@ -435,4 +435,9 @@ public class Plane extends ImpObject {
 		}
 	}
 
+	public boolean isCoplanar(Plane otherPlane) {
+		return this.planeNormal.epsilonEquals(otherPlane.planeNormal, GeometryConstants.EPSILON) &&
+				this.contains(otherPlane.planePoint);
+	}
+
 } // END OF CLASS DEFINITION.
