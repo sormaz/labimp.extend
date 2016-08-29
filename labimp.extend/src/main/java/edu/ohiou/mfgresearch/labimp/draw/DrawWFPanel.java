@@ -57,10 +57,10 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	private double mouseSensitivity = 20;
 	public final static Dimension scrollPaneSize = new Dimension(600, 400);
 	private Hashtable targetTable;
-  private HashMap shapeMap = new HashMap();
-private HashMap fillMap = new HashMap();
+	private HashMap shapeMap = new HashMap();
+	private HashMap fillMap = new HashMap();
 
-	private boolean mouseMode;
+	public boolean mouseMode;
 	private boolean showWorldCS = false;
 	private Point3d activePoint;
 	WorldCS wcs = new WorldCS(5, 6, 7);
@@ -151,6 +151,7 @@ private HashMap fillMap = new HashMap();
 		// set value for viewTransform matrix
 		if (exceptionFlag == false) {
 			this.viewTransform = new Matrix4d(vtMatrix);
+//			System.out.println(viewTransform.toString());
 		}
 	}
 
@@ -181,6 +182,7 @@ private HashMap fillMap = new HashMap();
 		}
 
 		newP = new Point3d(newX, newY, 0);
+		
 		return newP;
 	}
 
@@ -456,6 +458,9 @@ public void addFillShapes (Color color, Collection newShapes) {
 			LinkedList targets = target.getPointSet();
 			for (ListIterator itr = targets.listIterator(); itr.hasNext();) {
 				Point3d point = (Point3d) itr.next();
+//				System.out.println(point.toString() + "-->" + 
+//						this.createDisplayPoint(point).toString());
+//				System.out.println("View point: " + viewPoint.toString());
 				this.targetTable.put(this.createDisplayPoint(point), point);
 			}
 		}
@@ -541,6 +546,21 @@ public void addFillShapes (Color color, Collection newShapes) {
 	 *
 	 */
 
+	public void setView(double scale, double x, double y, double z) {
+		// create a 3d vector with the viewpoint values.
+		Vector3d vp = new Vector3d(x, y, z);
+		this.viewPoint = new Point3d(vp);
+		// update value for scale.
+		this.setScale(scale);
+		// show the view point values in view panel.
+		this.showPointLabel.setText(this.viewPoint.toString());
+		// set new value for view transformation matrix.
+		this.setViewTransform();
+		// repaint based on new viewpoint and scale.
+		this.needsUpdate = true;
+		createTargetTable();
+	}
+	
 	void viewButton_actionPerformed() {
 		// Local variables.
 		double x1 = 0, y1 = 0, z1 = 0, s = 0;
@@ -762,6 +782,22 @@ public void addFillShapes (Color color, Collection newShapes) {
 	private void field_focusGained(JTextField field) {
 		field.selectAll();
 	}
+	
+	public void mousePressed(int x, int y) {
+		drawPanel.mouseAdapter.this_mousePressed(x, y);
+	}
+
+	public void mouseClicked(int x, int y) {
+		drawPanel.mouseAdapter.this_mouseClicked(x, y);
+	}
+
+	public void mouseMoved(int x, int y) {
+		drawPanel.mouseAdapter.mouseMoved(x, y);
+	}
+
+	public void mouseDragged(int x, int y) {
+		drawPanel.mouseAdapter.mouseDragged(x, y);
+	}
 
 	public static void main(String[] args) {
 		//    DrawWFPanel dp =
@@ -787,8 +823,10 @@ public void addFillShapes (Color color, Collection newShapes) {
 
 	public class DrawWFCanvas extends JPanel implements Scrollable {
 
+		private DrawWFCanvasMouseAdapter mouseAdapter;
+		
 		public DrawWFCanvas() {
-			DrawWFCanvasMouseAdapter mouseAdapter = new DrawWFCanvasMouseAdapter(
+			mouseAdapter = new DrawWFCanvasMouseAdapter(
 				this);
 			this.addMouseMotionListener(mouseAdapter);
 			this.addMouseListener(mouseAdapter);
@@ -800,7 +838,7 @@ public void addFillShapes (Color color, Collection newShapes) {
 //			Graphics2D gd = (Graphics2D) g;
 //			paint(gd);
 //		}
-
+		
     public void paintComponent (Graphics g) {
       Graphics2D g2d = (Graphics2D) g;
       paintComponent(g2d);
@@ -927,26 +965,43 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 			this.adaptee = adaptee;
 		}
 		public void mousePressed(MouseEvent e) {
-			this_mousePressed(e);
+			this_mousePressed(e.getX(), e.getY());
 		}
 
 		public void mouseClicked(MouseEvent e) {
-			this_mouseClicked(e);
+			this_mouseClicked(e.getX(), e.getY());
 		}
 
 		public void mouseMoved(MouseEvent e) {
+			mouseMoved(e.getX(), e.getY());
+		}
+		
+		private void mouseMoved(int x, int y) {
+			
+//			System.out.println("Mouse moved at " + x + ", " + y );
+			
 			if (targetTable != null) {
-				Point2D.Double mouseLocation = new Point2D.Double(e.getX(), e
-					.getY());
+				Point2D.Double mouseLocation = new Point2D.Double(x, y);
 				TreeSet ts = new TreeSet(new Point2DComparator(mouseLocation));
 				ts.addAll(targetTable.keySet());
+				
+//				if (targetTable.size() > 0) {
+//				System.out.println("Minimum required proximity: " + POINT_PROXIMITY);
+//				System.out.println("Target location: " + ts.first().toString());
+//				System.out.println("Distance: " + mouseLocation.distance((Point2D.Double) ts.first()));
+//				}
+//				
+//				System.out.println(targetTable.toString());
+				
 				try {
 					activePoint = (Point3d) targetTable.get(ts.first());
 					if (mouseLocation.distance((Point2D.Double) ts.first()) < POINT_PROXIMITY) {
 						mouseMode = MODIFY_TARGET;
+//						System.out.println("Mouse mode: Modify target");
 						setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
 					} else {
 						mouseMode = MODIFY_VIEW;
+//						System.out.println("Mouse mode: Modify view");
 						setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
 					}
 				} catch (Exception ex) {
@@ -955,19 +1010,38 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 		}
 
 		public void mouseDragged(MouseEvent e) {
+			
+//			System.out.println("Mouse dragged at " + e.getX() + ", " + e.getY() );
+			
 			if (mouseMode == MODIFY_VIEW)
-				modifyViewPoint(e);
+				modifyViewPoint(e.getX(), e.getY());
 			else
-				modifyTargetPoint(e);
+				modifyTargetPoint(e.getX(), e.getY());
 		}
-		void this_mouseClicked(MouseEvent e) {
+		
+		public void mouseDragged(int x, int y) {
+			
+//			System.out.println("Mouse dragged at " + x + ", " + y );
+			
+			if (mouseMode == MODIFY_VIEW)
+				modifyViewPoint(x, y);
+			else
+				modifyTargetPoint(x, y);
+		}
+		
+		void this_mouseClicked(int x, int y) {
+			
+//			System.out.println("Mouse clicked at " + x + ", " + y );
+			
 			//viewPoint = new Point3d ( (double) (e.getX() - oldX), (double) (e. getY() - oldY), 0.0);
 			repaint();
 		}
 
-		public void modifyTargetPoint(MouseEvent e) {
-			Point2D.Double mouseLocation = new Point2D.Double(e.getX(), e
-				.getY());
+		public void modifyTargetPoint(int x, int y) {
+			
+//			System.out.println("Target table modified at " + x + ", " + y );
+			
+			Point2D.Double mouseLocation = new Point2D.Double(x, y);
 			Point3d newP = calcInverseDisplayTransform(mouseLocation);
 			Matrix4d inverse = new Matrix4d();
 			inverse.invert(viewTransform);
@@ -988,7 +1062,10 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 		/** Mouse dragged event.
 		 *
 		 */
-		void modifyViewPoint(MouseEvent e) {
+		void modifyViewPoint(int x, int y) {
+			
+//			System.out.println("View point modified at " + x + ", " + y );
+			
 			// Point3d to hold the change in view point in xv,yv,zv coordinates.
 			Point3d deltaViewPoint;
 			// Point3d to hold the change in view point in x,y,z coordinates.
@@ -999,8 +1076,8 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 
 			// Value of change in coordinates updated.
 			deltaViewPoint = new Point3d(
-				(e.getX() - oldX) / mouseSensitivity,
-				(e.getY() - oldY) / mouseSensitivity,
+				(x - oldX) / mouseSensitivity,
+				(y - oldY) / mouseSensitivity,
 				0.0);
 			try {
 				invertTransform.invert(viewTransform);
@@ -1025,19 +1102,22 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 			needsUpdate = true;
 			repaint();
 			// to update values for oldX and oldY.
-			oldX = e.getX();
-			oldY = e.getY();
+			oldX = x;
+			oldY = y;
 			createTargetTable(); // update target popints for changed view point
 		}
 
 		/** Mouse pressed event.
 		 *
 		 */
-		void this_mousePressed(MouseEvent e) {
+		void this_mousePressed(int x, int y) {
+			
+//			System.out.println("Mouse pressed at " + x + ", " + y );
+			
 			// show the view point values in view panel.
 			showPointLabel.setText(viewPoint.toString());
-			oldX = e.getX();
-			oldY = e.getY();
+			oldX = x;
+			oldY = y;
 		}
 
 	}// end of DrawWFCanvasMouseAdapter definition
