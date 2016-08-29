@@ -538,6 +538,11 @@ public void addFillShapes (Color color, Collection newShapes) {
 	public void display() {
 	  applet.display();
 	}
+	
+	public void setView(double scale) {
+		setView(scale, 
+				viewPoint.x, viewPoint.y, viewPoint.z);
+	}
 
 	/**
 	 * view button to set value for viewpoint and redraw canvas.
@@ -1131,10 +1136,7 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 					zoomRatio = 0.95;
 				}
 
-				setView(scale * zoomRatio,
-						viewPoint.x,
-						viewPoint.y,
-						viewPoint.z);
+				setView(scale * zoomRatio);
 				repaint();
 
 			}
