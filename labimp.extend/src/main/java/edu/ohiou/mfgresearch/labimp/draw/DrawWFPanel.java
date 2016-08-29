@@ -10,15 +10,13 @@ package edu.ohiou.mfgresearch.labimp.draw;
 
 
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ItemEvent;
 import javax.swing.JTextField;
 import java.awt.Dimension;
 import javax.swing.JPanel;
 import java.awt.Color;
 
 import java.awt.geom.*;
-import java.awt.event.MouseEvent;
+import java.text.DecimalFormat;
 import java.awt.Rectangle;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -219,7 +217,8 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	public void setScale(double newScale) {
 		this.scale = newScale;
 		// update visual component
-		this.scaleField.setText(Double.toString(newScale));
+		DecimalFormat df = new DecimalFormat("#.00");
+		this.scaleField.setText(df.format(newScale));
 		this.setViewTransform();
 	}
 
@@ -830,6 +829,7 @@ public void addFillShapes (Color color, Collection newShapes) {
 				this);
 			this.addMouseMotionListener(mouseAdapter);
 			this.addMouseListener(mouseAdapter);
+			this.addMouseWheelListener(mouseAdapter);
 		}
 
 //		public void paint(Graphics g) {
@@ -950,7 +950,7 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 		 *
 		 */
 	} // end of DrawWFCanvas definition
-
+	
 	/**
 	 * MouseAdapter class.
 	 *
@@ -1119,8 +1119,32 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 			oldX = x;
 			oldY = y;
 		}
+		
+		public void mouseWheelMoved(MouseWheelEvent e) {
+
+			if(e.getScrollType() == MouseWheelEvent.WHEEL_UNIT_SCROLL) {
+
+				double zoomRatio = 1;
+				if (e.getWheelRotation() < 0) {
+					zoomRatio = 1.05;
+				} else {
+					zoomRatio = 0.95;
+				}
+
+				setView(scale * zoomRatio,
+						viewPoint.x,
+						viewPoint.y,
+						viewPoint.z);
+				repaint();
+
+			}
+
+
+		}
 
 	}// end of DrawWFCanvasMouseAdapter definition
+	
+	
 
 	void wcsCheckBox_itemStateChanged(ItemEvent e) {
 		showWorldCS = !showWorldCS;
