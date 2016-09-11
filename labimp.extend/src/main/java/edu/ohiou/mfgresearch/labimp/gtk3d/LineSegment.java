@@ -239,8 +239,31 @@ public class LineSegment extends CurveSegment  {
    */
   public LinkedList getShapeList(DrawWFPanel canvas) {
     LinkedList shapeList = new LinkedList();
-    // get 2D shape for tranformed line segment and add to shapeList.
-    shapeList.add(this.createDisplayLine(canvas));
+    
+    //Arif Ahmed - 9/11/16
+    //Every shapelist object is constructed using 3d lines.
+    //The lines are transformed into 2d lines (for perspective projection)
+    //using the view matrix provided by canvas.
+    //Instead of transforming them, we can choose to send the 3d coordinates.
+    //JavaFX can then construct 3d object.
+    //Not using this code for now. But keeping it for future consideration.
+    
+//	  if(canvas==null) {
+//		  Point3d startPoint = gettStartPoint();
+//		  Point3d endPoint = gettEndPoint();
+//		  
+//		  double[] start = {startPoint.x, startPoint.y, startPoint.z};
+//		  double[] end = {endPoint.x, endPoint.y, endPoint.z};
+//		  double[][] line = {start, end};
+//		  
+//		  shapeList.add(line);
+//	  } else {
+    
+    
+		    // get 2D shape for tranformed line segment and add to shapeList.
+		    shapeList.add(this.createDisplayLine(canvas));
+//	  }
+    
     return shapeList;
   } 
 
