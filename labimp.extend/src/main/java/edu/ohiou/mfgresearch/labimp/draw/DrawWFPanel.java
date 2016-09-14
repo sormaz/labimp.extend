@@ -789,6 +789,14 @@ public void addFillShapes (Color color, Collection newShapes) {
 	public void mouseDragged(int x, int y) {
 		drawPanel.mouseAdapter.mouseDragged(x, y);
 	}
+	
+	public void modifyViewPoint(int x, int y) {
+		drawPanel.mouseAdapter.modifyViewPoint(x, y);
+	}
+	
+	public void modifyTargetPoint(int x, int y) {
+		drawPanel.mouseAdapter.modifyTargetPoint(x, y);
+	}
 
 	public static void main(String[] args) {
 		//    DrawWFPanel dp =
