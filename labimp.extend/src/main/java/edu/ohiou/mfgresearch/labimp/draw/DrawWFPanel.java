@@ -222,6 +222,19 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 		this.setViewTransform();
 	}
 
+	/**
+	 * view button to set value for viewpoint and redraw canvas.
+	 *   (get viewpoint vector values from user)
+	 *
+	 */
+
+	public void setView(double scale, double x, double y, double z) {	
+		this.scale = scale;	
+		setViewPoint(new Point3d(x, y, z));
+		this.needsUpdate = true;
+		createTargetTable();
+	}
+
 	/** set view point.
 	 *
 	 */
@@ -537,32 +550,6 @@ public void addFillShapes (Color color, Collection newShapes) {
 
 	public void display() {
 	  applet.display();
-	}
-	
-	public void setView(double scale) {
-		setView(scale, 
-				viewPoint.x, viewPoint.y, viewPoint.z);
-	}
-
-	/**
-	 * view button to set value for viewpoint and redraw canvas.
-	 *   (get viewpoint vector values from user)
-	 *
-	 */
-
-	public void setView(double scale, double x, double y, double z) {
-		// create a 3d vector with the viewpoint values.
-		Vector3d vp = new Vector3d(x, y, z);
-		this.viewPoint = new Point3d(vp);
-		// update value for scale.
-		this.setScale(scale);
-		// show the view point values in view panel.
-		this.showPointLabel.setText(this.viewPoint.toString());
-		// set new value for view transformation matrix.
-		this.setViewTransform();
-		// repaint based on new viewpoint and scale.
-		this.needsUpdate = true;
-		createTargetTable();
 	}
 	
 	void viewButton_actionPerformed() {
@@ -1136,7 +1123,8 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 					zoomRatio = 0.95;
 				}
 
-				setView(scale * zoomRatio);
+				setScale(scale * zoomRatio);
+				createTargetTable();
 				repaint();
 
 			}
