@@ -33,7 +33,7 @@ public class BezierCurve2D extends ViewObject {
 	 */
 
 		List points = new LinkedList();
-		int nsteps = 20;
+		int nsteps = 100;
 		Color controlColor = Color.green;
 
 		public BezierCurve2D (List points) {
