@@ -149,10 +149,10 @@ public class BezierCurve extends ViewObject {
 	 * @param t
 	 * @return
 	 */
-	public double getBezierByMatrix(int order, double[] controls, double t) {
+	public double getBezierByMatrix(double[] controls, double t) {
 
 		// create the blending function for Bernstein polynomial
-		GMatrix blendFunc = null;
+		Matrix4d blendFunc = null;
 		try {
 			blendFunc = getBlendingMatrix(order);
 		} catch (Exception e) {
@@ -173,7 +173,7 @@ public class BezierCurve extends ViewObject {
 
 		// multiply to get the point on curve
 		System.out.print(tVector + " * " + blendFunc + " * " + vecControls + " = ");
-		tVector.mul(blendFunc);
+		//tVector.mul(blendFunc);
 		System.out.print(tVector + " * " + vecControls + " = ");
 		GMatrix bmat = new GMatrix(1, order + 1);
 		bmat.set(tVector);
@@ -190,8 +190,8 @@ public class BezierCurve extends ViewObject {
 	 * @return
 	 * @throws Exception
 	 */
-	public static GMatrix getBlendingMatrix(int order) throws Exception {
-		GMatrix bernsteinPoly = new GMatrix(order, order);
+	public static Matrix4d getBlendingMatrix(int order) throws Exception {
+		Matrix4d bernsteinPoly = new Matrix4d();
 		switch (order) {
 		case 2:
 			bernsteinPoly.set(new Matrix3d(1, 0, 0, -2, 2, 0, 1, -2, 1));
