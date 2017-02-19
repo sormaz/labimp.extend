@@ -3,7 +3,9 @@ package edu.ohiou.mfgresearch.labimp.draw;
 import edu.ohiou.mfgresearch.labimp.basis.*;
 import edu.ohiou.mfgresearch.labimp.draw.*;
 import edu.ohiou.mfgresearch.labimp.gtk3d.LineSegment;
+
 import javax.vecmath.*;
+
 import java.util.*;
 import java.awt.Color;
 import java.awt.Graphics2D;
@@ -57,15 +59,37 @@ public class BezierCurve extends ImpObject {
     }
     return list;
   }
+  
+  public LinkedList getControlContour(DrawWFPanel canvas) {
+	    LinkedList list = new LinkedList();
+	    for (int i = 0; i < points.size(); i++) {
+	        LineSegment line = new LineSegment ((Point3d) points.get(i), (Point3d)points.get((i+1 )% points.size()));
+	        list.addAll(line.getShapeList (canvas));
+	      }
+	    return list;
+  }
 
   public LinkedList getShapeList (DrawWFPanel canvas) {
     LinkedList list = getShapeContour (canvas);
-    for (int i = 0; i < points.size(); i++) {
-      LineSegment line = new LineSegment ((Point3d) points.get(i), (Point3d)points.get((i+1 )% points.size()));
-      list.addAll(line.getShapeList (canvas));
-    }
+    list.addAll(getControlContour(canvas));
     return list;
   }
+  
+  public void makeShapeSets (DrawWFPanel canvas) {
+	    Color color = this.color;
+	    if (color == null) {
+	      String propColor = properties.getProperty(this.getClass().getName() +
+	                                                ".color", "000000");
+	      color = new Color(Integer.parseInt(propColor, 16));
+	    }
+
+	    if (canvas instanceof DrawWFPanel) {
+	      DrawWFPanel drawPanel = (DrawWFPanel) canvas;
+	      drawPanel.addDrawShapes(color, getShapeContour(drawPanel));
+	      drawPanel.addDrawShapes(controlColor, getControlContour(drawPanel));
+	    }
+
+	  }
 
   public void paintComponent (Graphics2D g, DrawWFPanel canvas)
   {
