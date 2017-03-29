@@ -113,6 +113,8 @@ public class Loop2d extends Prof2d {
 	
 	public Vector2d getLineNormal(Line2d line)
 	{
+		Draw2DApplet da = new Draw2DApplet(this);
+		this.display();
 		Vector2d dir = new Vector2d(line.getDirection());
 		Vector2d nDir = new Vector2d(-dir.y, dir.x);
 		Vector2d negDir = new Vector2d();

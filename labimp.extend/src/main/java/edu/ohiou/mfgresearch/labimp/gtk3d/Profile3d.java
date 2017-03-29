@@ -28,59 +28,62 @@ public class Profile3d extends ImpObject {
 	// Class parameter
 	private LinkedList shapes = new LinkedList();
 
-	private  boolean isPlanar = false;
+	private boolean isPlanar = false;
 	private Plane plane;
-	private Point3d origin = new Point3d(); //added by Chandu 10/12
+	private Point3d origin = new Point3d(); // added by Chandu 10/12
 	private HashMap curveMap;
 	Matrix4d transformMatrix = null;
 	private Point3d position;
 	private Vector3d[] dirr_array;
-	private double pocket_length,pocket_width, corner_radius;
-	
+	private double pocket_length, pocket_width, corner_radius;
 
 	public Vector3d[] gettDirr_array() {
 		return dirr_array;
 	}
-	/*public double[][] getDirr_array() {
-		double[][] ret_arr=new double[this.dirr_array.length][3];
-		for(int i =0; i< this.dirr_array.length; i++){
-			double [] ret = {dirr_array[i].x,dirr_array[i].y, dirr_array[i].z};
-			ret_arr[i]=ret; 
-		}
-		
-		return ret_arr;
-	}*/
-	public void settDirr_array(Vector3d[] dirr_array){
+
+	/*
+	 * public double[][] getDirr_array() { double[][] ret_arr=new
+	 * double[this.dirr_array.length][3]; for(int i =0; i<
+	 * this.dirr_array.length; i++){ double [] ret =
+	 * {dirr_array[i].x,dirr_array[i].y, dirr_array[i].z}; ret_arr[i]=ret; }
+	 * 
+	 * return ret_arr; }
+	 */
+	public void settDirr_array(Vector3d[] dirr_array) {
 		this.dirr_array = dirr_array;
 	}
-	/*public void setDirr_array(double[][] dirr_array) {
-		Vector3d[] dirr_arr = new Vector3d[dirr_array.length];
-		for(int i =0; i< dirr_array.length; i++){
-			dirr_arr[i]= new Vector3d(dirr_array[i][0],dirr_array[i][1],dirr_array[i][2]);
-		}
-		this.dirr_array = dirr_arr;
-	}*/
-	
+	/*
+	 * public void setDirr_array(double[][] dirr_array) { Vector3d[] dirr_arr =
+	 * new Vector3d[dirr_array.length]; for(int i =0; i< dirr_array.length;
+	 * i++){ dirr_arr[i]= new
+	 * Vector3d(dirr_array[i][0],dirr_array[i][1],dirr_array[i][2]); }
+	 * this.dirr_array = dirr_arr; }
+	 */
+
 	public double[] getOrigin() {
-		double[] origin = new double[]{this.origin.x,this.origin.y, this.origin.z };
-		return origin ;
+		double[] origin = new double[] { this.origin.x, this.origin.y, this.origin.z };
+		return origin;
 	}
+
 	public void setOrigin(double[] origin) {
-		this.origin = new Point3d(origin[0],origin[1],origin[2]);
+		this.origin = new Point3d(origin[0], origin[1], origin[2]);
 	}
+
 	public void setShapes(LinkedList shapes) {
 		this.shapes = shapes;
 	}
+
 	public void setPlanar(boolean isPlanar) {
 		this.isPlanar = isPlanar;
 	}
+
 	public boolean getPlanar() {
-		return this.isPlanar ;
+		return this.isPlanar;
 	}
+
 	public void setPlane(Plane plane) {
 		this.plane = plane;
 	}
-	
 
 	public double getPocket_length() {
 		return pocket_length;
@@ -109,18 +112,18 @@ public class Profile3d extends ImpObject {
 	public Point3d getttPosition() {
 		return position;
 	}
-	/*public double[] getPosition() {
-		double [] ret = {position.x, position.y, position.z};
-		return ret;
-	}*/
+	/*
+	 * public double[] getPosition() { double [] ret = {position.x, position.y,
+	 * position.z}; return ret; }
+	 */
 
 	public void settPosition(Point3d position) {
 		this.position = position;
 	}
 	/*
-	public void setPosition(double [] v ) {
-		this.position = new Point3d(v[0], v[1], v[2]);
-	}*/
+	 * public void setPosition(double [] v ) { this.position = new Point3d(v[0],
+	 * v[1], v[2]); }
+	 */
 
 	public LinkedList loops = new LinkedList();
 
@@ -150,9 +153,7 @@ public class Profile3d extends ImpObject {
 			Object shape = itr.next();
 			if (shape instanceof LineSegment) {
 				LineSegment ls = (LineSegment) shape;
-				shapes
-						.add(new LineSegment(ls.gettStartPoint(), ls
-								.gettEndPoint()));
+				shapes.add(new LineSegment(ls.gettStartPoint(), ls.gettEndPoint()));
 			} else if (shape instanceof Arc) {
 				Arc inArc = (Arc) shape;
 				shapes.add(new Arc(inArc));
@@ -300,7 +301,7 @@ public class Profile3d extends ImpObject {
 		}
 		return pointSet;
 	}
-	
+
 	/**
 	 * Method to return line segement points of the profile.
 	 * 
@@ -344,78 +345,103 @@ public class Profile3d extends ImpObject {
 		return pointList;
 
 	}
-	
-	public Plane gettPlane () throws InvalidPlaneException {
+
+	public Plane gettPlane() throws InvalidPlaneException {
 		if (!issPlanar()) {
 			throw new InvalidPlaneException("Profile " + toString() + "is not planar");
 		}
 		return plane;
 	}
-	
-	public Plane getPlane(){
+
+	public Plane getPlane() {
 		return this.plane;
 	}
 
-
 	/**
-	 * dnsormaz needs explanation !!?!?!!?
-	 * not foolproof code
-	 * covers only is profile curves are colinear
+	 * dnsormaz needs explanation !!?!?!!? not foolproof code covers only is
+	 * profile curves are colinear
 	 * 
 	 * @return
 	 */
-	/*public boolean isPlanar() {
-		return this.isPlanar;
-	}*/
+	/*
+	 * public boolean isPlanar() { return this.isPlanar; }
+	 */
 	public boolean issPlanar() {
-		if (plane != null) return true;
+		if (plane != null)
+			return true;
 		LinkedList points = getPointSetAsLinkedList();
 		Plane tryPlane = null;
-		if (points.size() < 3)
-		{
+		if (points.size() < 3) {
 			CurveSegment curve = (CurveSegment) getShapes().getFirst();
 			if (curve instanceof LineSegment)
 				return false;
-			if (curve instanceof Arc)
-			{
+			if (curve instanceof Arc) {
 				Arc arc = (Arc) curve;
-				try
-				{
+				try {
 					tryPlane = new Plane(arc.gettCenter(), arc.gettNormal());
 					plane = tryPlane;
 					isPlanar = true;
-				}
-				catch (Exception e)
-				{
+				} catch (Exception e) {
 					e.printStackTrace();
-				}				
+				}
 			}
 		}
-//		System.out.println("points: " + points);
-		else
-		{
-			Point3d p1 = (Point3d) points.getFirst();
-			Point3d p2 = (Point3d) points.get(1);
+		// System.out.println("points: " + points);
+		else {
+			Point3d p1, p2, p3;
+			Object o = points.getFirst();
+			if (o instanceof Point3d) {
+				p1 = (Point3d) points.getFirst();
+			} else {
+				double[] a1 = (double[]) points.getFirst();
+				p1 = new Point3d(a1[0], a1[1], a1[2]);
+			}
+
+			o = points.get(1);
+			if (o instanceof Point3d) {
+				p2 = (Point3d) points.get(1);
+			} else {
+				double[] a2 = (double[]) points.get(1);
+				p2 = new Point3d(a2[0], a2[1], a2[2]);
+
+			}
+
 			int i = 2, j = 2;
-			while (i<points.size())
-			{
-				try
-				{
-					Point3d p3 = (Point3d) points.get(i);
+			while (i < points.size()) {
+
+				// Alec Changes
+				o = points.get(i);
+				if (o instanceof Point3d) {
+					 p3 = (Point3d) points.get(i);
+				} else {
+					double[] a3 = (double[]) points.get(i);
+					 p3 = new Point3d(a3[0], a3[1], a3[2]);
+
+				}
+				
+				try {
+					// Point3d p3 = (Point3d) points.get(i);
 					tryPlane = new Plane(p1, p2, p3);
 					break;
-				}
-				catch (InvalidPlaneException ipe)
-				{
+				} catch (InvalidPlaneException ipe) {
 					i++;
 				}
 			}
-			if (tryPlane == null) return false;
-			while (j < points.size())
-			{
-				Point3d testPoint = (Point3d) points.get(j);
-				if (!tryPlane.contains(testPoint)) 
-				{
+			if (tryPlane == null)
+				return false;
+			while (j < points.size()) {
+				System.out.println("alec j" + j + " size" + points.size());
+				Point3d testPoint;
+				o = points.get(j);
+				if (o instanceof Point3d) {
+					testPoint = (Point3d) points.get(j);
+
+				} else {
+					double[] a1 = (double[]) points.get(j);
+					testPoint = new Point3d(a1[0], a1[1], a1[2]);
+				}
+
+				if (!tryPlane.contains(testPoint)) {
 					return false;
 				}
 				j++;
@@ -425,131 +451,112 @@ public class Profile3d extends ImpObject {
 		}
 		return isPlanar;
 	}
-	
+
 	/**
-	 * transfrom for its own matrix (Using computeTransformMatrix 
-	 * for transformtation)
+	 * transfrom for its own matrix (Using computeTransformMatrix for
+	 * transformtation)
+	 * 
 	 * @return
 	 */
-	
-	public Prof2d transformTo2d () 
-		throws InvalidCurveException, InvalidPlaneException {
-		
+
+	public Prof2d transformTo2d() throws InvalidCurveException, InvalidPlaneException {
+
 		transformMatrix = computeTransformMatrix();
 		return transformTo2d(transformMatrix);
 	}
 
 	/**
-	 * @author Chandu
-	 * transforms this profile to a plane parallel to the Z axis
-	 * and creates a Prof2d by dropping the z distance. 
+	 * @author Chandu transforms this profile to a plane parallel to the Z axis
+	 *         and creates a Prof2d by dropping the z distance.
 	 */
 
-	public Prof2d transformTo2d(Matrix4d matrix)
-			throws InvalidCurveException, InvalidPlaneException {
+	public Prof2d transformTo2d(Matrix4d matrix) throws InvalidCurveException, InvalidPlaneException {
 		Vector3d normal = gettPlane().getNormal();
 		Prof2d prof2d = new Prof2d();
 		curveMap = new HashMap();
 		if (issPlanar()) {
-			
+
 			for (Iterator shapeItr = getShapes().iterator(); shapeItr.hasNext();) {
 				Object shape = shapeItr.next();
 				if (shape instanceof LineSegment) {
 					LineSegment newLine = (LineSegment) shape;
 					newLine = newLine.transform(matrix);
-					
+
 					try {
-						Line2d line = new Line2d(newLine.startPoint.x,
-								newLine.startPoint.y, newLine.endPoint.x,
+						Line2d line = new Line2d(newLine.startPoint.x, newLine.startPoint.y, newLine.endPoint.x,
 								newLine.endPoint.y);
 						prof2d.addCurve(line);
 						curveMap.put(line, shape);
-						
+
 					} catch (Exception e) {
-						System.out
-								.println("Exception in transformTo2D (line) :"
-										+ e.getMessage());
+						System.out.println("Exception in transformTo2D (line) :" + e.getMessage());
 					}
-				}// if
+				} // if
 				if (shape instanceof Arc) {
 					Arc tempArc = (Arc) shape;
-					System.out.println("3d Arc angles:"
-							+ tempArc.getStartAngle() + " and "
-							+ tempArc.getEndAngle());
-					if (!tempArc.gettNormal().epsilonEquals(normal,
-							GtkConstants.EPSILON))
+					System.out.println("3d Arc angles:" + tempArc.getStartAngle() + " and " + tempArc.getEndAngle());
+					if (!tempArc.gettNormal().epsilonEquals(normal, GtkConstants.EPSILON))
 						tempArc = (Arc) tempArc.swap();
 					tempArc = (tempArc).transform(matrix);
-					
+
 					Vector3d arcX = tempArc.gettXAxis();
 					double angleX = arcX.angle(GeometryConstants.X_VECTOR);
-//					System.out.println("Angle between X axes: " + angleX);
-					Point2d center = new Point2d(tempArc.center.x,
-							tempArc.center.y);
+					// System.out.println("Angle between X axes: " + angleX);
+					Point2d center = new Point2d(tempArc.center.x, tempArc.center.y);
 					try {
-						Arc2d arc = new Arc2d(center, tempArc.radius, tempArc
-								.getStartAngle()
-								+ angleX
-								, tempArc.getEndAngle() 
-								+ angleX
-								);
+						Arc2d arc = new Arc2d(center, tempArc.radius, tempArc.getStartAngle() + angleX,
+								tempArc.getEndAngle() + angleX);
 						prof2d.addCurve(arc);
 						curveMap.put(arc, shape);
-//						System.out.println("Added arc: " + arc);
+						// System.out.println("Added arc: " + arc);
 					} catch (Exception e) {
-						System.out.println("Exception in transformTo2D (Arc) :"
-								+ e.getMessage());
+						System.out.println("Exception in transformTo2D (Arc) :" + e.getMessage());
 					}
-				}// if
-			}// for - curves
-		}// if - planar
+				} // if
+			} // for - curves
+		} // if - planar
 		return prof2d;
 	}
-	
-	public Matrix4d computeTransformMatrix()
-	{
+
+	public Matrix4d computeTransformMatrix() {
 		if (transformMatrix != null)
 			return transformMatrix;
-		transformMatrix = new Matrix4d();  
-		Matrix4d rotationMatrix= null;
-		try
-		{
-		Vector3d normal = gettPlane().getNormal();
-		Point3d pt = ((CurveSegment) getShapes().getFirst()).gettStartPoint();
+		transformMatrix = new Matrix4d();
+		Matrix4d rotationMatrix = null;
+		try {
+			Vector3d normal = gettPlane().getNormal();
+			Point3d pt = ((CurveSegment) getShapes().getFirst()).gettStartPoint();
 
 			double distance = gettPlane().distancePointPlane(GeometryConstants.ORIGIN);
 			Vector3d tPoint = new Vector3d(normal);
-			tPoint.scale(distance);	
-//			tPoint.negate();
-		rotationMatrix = Gtk.computeTransformMatrix(normal);
+			tPoint.scale(distance);
+			// tPoint.negate();
+			rotationMatrix = Gtk.computeTransformMatrix(normal);
 
-		     Matrix4d translationMatrix = new Matrix4d();
-		     Vector3d translateVec = new Vector3d(tPoint);
-		     translateVec.negate();
+			Matrix4d translationMatrix = new Matrix4d();
+			Vector3d translateVec = new Vector3d(tPoint);
+			translateVec.negate();
 
-		     translationMatrix.set(translateVec);
-		     transformMatrix = new Matrix4d(translationMatrix);
-		     transformMatrix.mul(rotationMatrix);
-		
-		}
-		catch (Exception ipe)
-		{
+			translationMatrix.set(translateVec);
+			transformMatrix = new Matrix4d(translationMatrix);
+			transformMatrix.mul(rotationMatrix);
+
+		} catch (Exception ipe) {
 			ipe.printStackTrace();
 		}
 		transformMatrix.invert();
 		return transformMatrix;
 	}
-	
+
 	/** @todo implement properly -- translation et al */
 	public Profile3d transform(Vector3d vector) {
 		return transform(Gtk.computeTransformMatrix(vector));
 	}
-	
-	public HashMap gettCurveMap()
-	{
+
+	public HashMap gettCurveMap() {
 		return curveMap;
 	}
-	
+
 	public Profile3d transform(Matrix4d xFormMatrix) {
 		Profile3d transformedProfile = new Profile3d();
 		for (ListIterator itr = shapes.listIterator(); itr.hasNext();) {
@@ -592,24 +599,25 @@ public class Profile3d extends ImpObject {
 	 */
 	public static void main(String[] args) {
 		Profile3d prof = new Profile3d();
-//		prof.addShape(new LineSegment(0.2, 0, 0, 0.8, 0, 0)).addShape(
-//				new Arc(0.2, new Point3d(0.8, 0.2, 0), new Vector3d(1, 1, 0),
-//						new Vector3d(-1, 1, 0), 3 * Math.PI / 2, 2 * Math.PI));
+		// prof.addShape(new LineSegment(0.2, 0, 0, 0.8, 0, 0)).addShape(
+		// new Arc(0.2, new Point3d(0.8, 0.2, 0), new Vector3d(1, 1, 0),
+		// new Vector3d(-1, 1, 0), 3 * Math.PI / 2, 2 * Math.PI));
 
-//		prof.addShape(new LineSegment(0, 0, 1, 1, 0, 0)).addShape(new LineSegment(1, 0, 0, 0, 1, 0)).
-//		addShape(new LineSegment(0, 1, 0, 0, 0, 1));
-		
-//		prof.addShape(new LineSegment(0,0,2, 2, 0,2)).addShape(new LineSegment(2, 0,2, 0, 3,2)).
-//		addShape(new LineSegment(0, 3, 2, 0,0,2));
-		
-		prof.addShape (new Arc(5.0, new Point3d(0.0, 0.0, 0.0), 
-				GeometryConstants.X_VECTOR, GeometryConstants.Y_VECTOR));
-		
+		// prof.addShape(new LineSegment(0, 0, 1, 1, 0, 0)).addShape(new
+		// LineSegment(1, 0, 0, 0, 1, 0)).
+		// addShape(new LineSegment(0, 1, 0, 0, 0, 1));
+
+		// prof.addShape(new LineSegment(0,0,2, 2, 0,2)).addShape(new
+		// LineSegment(2, 0,2, 0, 3,2)).
+		// addShape(new LineSegment(0, 3, 2, 0,0,2));
+
+		prof.addShape(new Arc(5.0, new Point3d(0.0, 0.0, 0.0), GeometryConstants.X_VECTOR, GeometryConstants.Y_VECTOR));
+
 		try {
 			Prof2d prof2ds = prof.transformTo2d();
 			prof2ds.settApplet(new edu.ohiou.mfgresearch.labimp.basis.Draw2DApplet(prof2ds));
 			prof2ds.display();
-			Matrix4d m4d = new Matrix4d(prof.computeTransformMatrix());		
+			Matrix4d m4d = new Matrix4d(prof.computeTransformMatrix());
 			Profile3d p3d = prof.transform(m4d);
 			p3d.settApplet(new DrawWFApplet(p3d, new Point3d(30, 30, 30), 200));
 			p3d.display("transform");
