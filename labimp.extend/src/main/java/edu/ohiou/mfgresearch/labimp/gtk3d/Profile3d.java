@@ -297,7 +297,7 @@ public class Profile3d extends ImpObject {
 				pointSet.add(((LineSegment) shape).gettEndPoint());
 			}
 			if (shape instanceof Arc)
-				pointSet.add(((Arc) shape).getCenter());
+				pointSet.add(((Arc) shape).gettCenter());
 		}
 		return pointSet;
 	}
