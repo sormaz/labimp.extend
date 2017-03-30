@@ -15,7 +15,6 @@ import javax.vecmath.*;
 
 import edu.ohiou.mfgresearch.labimp.basis.*;
 import edu.ohiou.mfgresearch.labimp.gtk2d.*;
-
 import jess.*;
 
 /**
@@ -113,8 +112,8 @@ public class Loop2d extends Prof2d {
 	
 	public Vector2d getLineNormal(Line2d line)
 	{
-		Draw2DApplet da = new Draw2DApplet(this);
-		this.display();
+//		Draw2DApplet da = new Draw2DApplet(this);
+//		this.display();
 		Vector2d dir = new Vector2d(line.getDirection());
 		Vector2d nDir = new Vector2d(-dir.y, dir.x);
 		Vector2d negDir = new Vector2d();
@@ -147,7 +146,13 @@ public class Loop2d extends Prof2d {
 		};
 		vo.setApplet (new Draw2DApplet(vo));
 		vo.display();*/
-		 return Polygon2d.isPointInside(xp, yp, mp.x, mp.y)? negDir: nDir; 
+		 try {
+			return Polygon2d.isPointInside(xp, yp, mp.x, mp.y)? negDir: nDir;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		} 
 	}
 	
 	public Vector2d getArcLoopNormal(Arc2d arc)
