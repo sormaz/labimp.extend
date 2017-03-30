@@ -9,6 +9,7 @@
 package edu.ohiou.mfgresearch.labimp.gtk3d;
 
 import java.util.*;
+import java.awt.Color;
 import java.awt.geom.*;
 
 import javax.vecmath.*;
@@ -27,6 +28,7 @@ import jess.*;
 public class Loop2d extends Prof2d {
 
 	public Loop2d() {
+		color = color.BLACK;
 
 	}
 	
@@ -113,6 +115,7 @@ public class Loop2d extends Prof2d {
 	
 	public Vector2d getLineNormal(Line2d line)
 	{
+		this.color = Color.BLACK;
 		Draw2DApplet da = new Draw2DApplet(this);
 		this.display();
 		Vector2d dir = new Vector2d(line.getDirection());
@@ -306,5 +309,25 @@ public class Loop2d extends Prof2d {
 	}
 
 	public static void main(String[] args) {
+		try {
+			
+			Line2d l0 = new Line2d(1,1,2,2);
+			Line2d l1 = new Line2d(1,1,3,3);
+			Line2d l2 = new Line2d(1,1,4,4);
+			Line2d l3 = new Line2d(1,1,5,5);
+			Loop2d loop = new Loop2d();
+			loop.addCurve(l0);
+			loop.addCurve(l1);
+			loop.addCurve(l2);
+			loop.addCurve(l3);
+			
+			Draw2DApplet da = new Draw2DApplet(loop);
+			loop.display();
+		} catch (InvalidLineException e) {
+			
+			e.printStackTrace();
+		}
+	
+		
 	}
 }
