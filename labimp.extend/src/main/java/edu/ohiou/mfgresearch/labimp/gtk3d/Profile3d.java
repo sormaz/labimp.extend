@@ -289,17 +289,18 @@ public class Profile3d extends ImpObject {
 	 */
 
 	public HashSet getProfilePoints() {
-		HashSet pointSet = new HashSet();
+//		HashSet pointSet = new HashSet();
+		SortedSet sortedSet = new TreeSet(new Tuple3dEpsilonComparator());
 		for (ListIterator itr = shapes.listIterator(); itr.hasNext();) {
 			Object shape = itr.next();
 			if (shape instanceof LineSegment) {
-				pointSet.add(((LineSegment) shape).gettStartPoint());
-				pointSet.add(((LineSegment) shape).gettEndPoint());
+				sortedSet.add(((LineSegment) shape).gettStartPoint());
+				sortedSet.add(((LineSegment) shape).gettEndPoint());
 			}
 			if (shape instanceof Arc)
-				pointSet.add(((Arc) shape).gettCenter());
+				sortedSet.add(((Arc) shape).gettCenter());
 		}
-		return pointSet;
+		return new HashSet(sortedSet);
 	}
 
 	/**
@@ -405,7 +406,7 @@ public class Profile3d extends ImpObject {
 				p2 = new Point3d(a2[0], a2[1], a2[2]);
 
 			}
-
+			System.out.println("Point 1 is " + p1 + ", point 2 is " + p2);
 			int i = 2, j = 2;
 			while (i < points.size()) {
 
@@ -425,6 +426,7 @@ public class Profile3d extends ImpObject {
 					break;
 				} catch (InvalidPlaneException ipe) {
 					i++;
+					System.out.println("point i=" + i + "-> " + p3 + " is colinear, trying next");
 				}
 			}
 			if (tryPlane == null)
