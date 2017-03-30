@@ -1,8 +1,8 @@
 package edu.ohiou.mfgresearch.labimp.gtk3d;
 
-import edu.ohiou.mfgresearch.labimp.basis.ViewObject;
 import edu.ohiou.mfgresearch.labimp.basis.*;
 import edu.ohiou.mfgresearch.labimp.gtk2d.*;
+
 import java.util.List;
 
 public class Polygon2d extends ViewObject {
@@ -71,18 +71,22 @@ public class Polygon2d extends ViewObject {
 		double yp[],
 		double x,
 		double y) {
+		int errorIndex = 0;
 		try {
 			// Variable declarations.
 			int polySides = xp.length; // polySides = number of vertices of polygon.
 			Line2d polyEdge;
+			
 
 			// Create Line2D.Double for all edges of polygon and check if test point
 			// lies on the edge of polygon.
 			for (int i = 0; i < polySides - 1; i++) {
+				errorIndex = i;
 				polyEdge = new Line2d(xp[i], yp[i], xp[i + 1], yp[i + 1]);
 				if (polyEdge.getLineSegment2D().relativeCCW(x, y) == 0)
 					return true;
 			}
+			errorIndex = polySides - 1;
 			// Line joining first and last vertex of polygon.
 			polyEdge = new Line2d(
 				xp[0],
@@ -91,9 +95,10 @@ public class Polygon2d extends ViewObject {
 				yp[polySides - 1]);
 			return (polyEdge.getLineSegment2D().relativeCCW(x, y) == 0);
 		} catch (InvalidLineException ex) {
-			ex.printStackTrace();
+//			ex.printStackTrace();
+			throw new IllegalArgumentException("Invalid line at point " + errorIndex, ex);
 		}
-		return false;
+//		return false;
 	}
 
 	public static void main(String[] args) {
