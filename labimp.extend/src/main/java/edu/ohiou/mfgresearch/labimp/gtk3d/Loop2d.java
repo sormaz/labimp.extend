@@ -250,14 +250,20 @@ public class Loop2d extends Prof2d {
 
 		// enter code that will make Jes fact from this object
 		try {
+			
 			Fact f = new Fact("Loop", rete);
 			f.setSlotValue("ID", new Value(this));
 			f.setSlotValue("profileID", new Value(prof, RU.STRING));
 			f.setSlotValue("outer", new Value(outer));
 			ValueVector vv = new ValueVector();
 			for(Iterator itr = getCurves().iterator(); itr.hasNext();)
-			{
-				vv.add(new Value(itr.next()));
+			{ 
+				Curve2d c = (Curve2d)itr.next();
+				if (c instanceof Line2d) {
+					Line2d line = (Line2d) c;
+				System.out.println ("dns-> print line normal" + "\n\tLine " + line + "\n\tNormal "+ getLineNormal(line));
+				}
+				vv.add(new Value(c));
 			}
 			f.setSlotValue("curves", new Value(vv, RU.LIST));
 			rete.assertFact(f);
