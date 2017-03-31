@@ -258,6 +258,8 @@ public class Loop2d extends Prof2d {
 			ValueVector vv = new ValueVector();
 			for(Iterator itr = getCurves().iterator(); itr.hasNext();)
 			{ 
+				
+				// DSormaz added fro debugging
 				Curve2d c = (Curve2d)itr.next();
 				if (c instanceof Line2d) {
 					Line2d line = (Line2d) c;
