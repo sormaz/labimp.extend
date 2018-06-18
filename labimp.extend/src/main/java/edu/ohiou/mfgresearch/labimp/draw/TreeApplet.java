@@ -40,7 +40,7 @@ public class TreeApplet extends GUIApplet {
 
 	private void jbInit() throws Exception {
 		JScrollPane treeView = new JScrollPane(new JTree(((ImpObject) target)
-			.getTree()));
+			.geetTree()));
 		treeView.setToolTipText(target.toString());
 
 		this.getContentPane().setLayout(new BorderLayout());

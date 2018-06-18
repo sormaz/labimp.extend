@@ -137,7 +137,7 @@ public class AnimApplet extends GUIApplet {
 
 	public Dimension getAppletSize() {
 		Dimension targetSize = (target != null)
-			? target.getAppletSize()
+			? target.geetAppletSize()
 			: this.defaultGUIAppletSize;
 		Dimension animPanelSize = this.getContentPane().getSize();
 		return new Dimension(

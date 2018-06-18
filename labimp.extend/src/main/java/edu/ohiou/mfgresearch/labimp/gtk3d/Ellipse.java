@@ -162,7 +162,7 @@ public class Ellipse extends ImpObject {
 	 *   
 	 */
 
-	public DefaultMutableTreeNode getTree() {
+	public DefaultMutableTreeNode geetTree() {
 		return new DefaultMutableTreeNode(this);
 	}
 
