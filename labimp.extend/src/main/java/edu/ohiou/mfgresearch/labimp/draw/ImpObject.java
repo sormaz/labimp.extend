@@ -331,7 +331,7 @@ public abstract class ImpObject extends ViewObject
 	 *        their own nodes.
 	 * @return
 	 */
-	public DefaultMutableTreeNode getTree(int noLevels) {
+	public DefaultMutableTreeNode geetTree(int noLevels) {
 		return new DefaultMutableTreeNode(this);
 	}
 
