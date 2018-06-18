@@ -78,7 +78,7 @@ abstract public class DefaultSpaceState extends ImpObject implements Searchable 
 		return node;// = new DefaultMutableTreeNode(this);
 	}
 
-	public DefaultMutableTreeNode getTree() {
+	public DefaultMutableTreeNode geetTree() {
 		return null;
 	}
   

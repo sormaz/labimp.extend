@@ -335,7 +335,7 @@ public abstract class ImpObject extends ViewObject
 		return new DefaultMutableTreeNode(this);
 	}
 
-	public DefaultMutableTreeNode getTree() {
+	public DefaultMutableTreeNode geetTree() {
 		return new DefaultMutableTreeNode(this);
 	}
 

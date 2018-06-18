@@ -246,7 +246,7 @@ public class Profile3d extends ImpObject {
 	 * 
 	 */
 
-	public DefaultMutableTreeNode getTree() {
+	public DefaultMutableTreeNode geetTree() {
 		return new DefaultMutableTreeNode(this);
 	}
 

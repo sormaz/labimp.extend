@@ -229,10 +229,10 @@ public class LineSegment extends CurveSegment  {
   /**
    * Returns the size of applet for display
    */
-  public Dimension getAppletSize () {
-    Dimension finalPanelSize = this.panel.getPreferredSize();
-    return new Dimension(finalPanelSize.width + 10, finalPanelSize.height + 10);
-  }
+//  public Dimension getAppletSize () {
+//    Dimension finalPanelSize = this.panel.getPreferredSize();
+//    return new Dimension(finalPanelSize.width + 10, finalPanelSize.height + 10);
+//  }
 
   /** get shapes list - a linked list of 2D shapes representing line segment.
    *  (called by DrawWFCanvas getShapeList)

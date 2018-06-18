@@ -153,7 +153,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
     return null;
   }
 
-  public Dimension getAppletSize() {
+  public Dimension geetAppletSize() {
     return new Dimension(900, 700);
   }
 
@@ -1327,7 +1327,7 @@ public class SpaceSearcherPanel extends ViewPanel {
       }
     }
 
-    public Dimension getAppletSize() {
+    public Dimension geetAppletSize() {
       return new Dimension(500, 500);
     }
   }

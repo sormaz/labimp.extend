@@ -131,10 +131,10 @@ public class DrawWFApplet extends GUIApplet implements DrawableWF {
 	 *
 	 */
 
-	public Dimension getAppletSize() {
+	public Dimension geetAppletSize() {
 		Dimension targetSize;
 		try {
-			targetSize = target.getAppletSize();
+			targetSize = target.geetAppletSize();
 		} catch (NullPointerException e) {
 			targetSize = new Dimension(0, 0);
 		}

@@ -104,7 +104,7 @@ public class WaterJugs extends DefaultSpaceState {
 		panel = new JPanel();
 	}
 
-	public Dimension getAppletSize() {
+	public Dimension geetAppletSize() {
 		return new Dimension(400, 400);
 	}
 
