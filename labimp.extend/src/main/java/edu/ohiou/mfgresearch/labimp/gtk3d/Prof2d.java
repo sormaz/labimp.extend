@@ -449,25 +449,25 @@ public class Prof2d extends ImpObject {
 		return false;
 	}
 
-	public LinkedList getDrawList() {
+	public LinkedList geetDrawList() {
 		LinkedList shapeList = new LinkedList();
 		for (int i = 0; i < curves.size(); i++) {
-			LinkedList shapes = ((Curve2d) curves.get(i)).getDrawList();
+			LinkedList shapes = ((Curve2d) curves.get(i)).geetDrawList();
 			shapeList.addAll(shapes);
 		}
 		return shapeList;
 	}
 
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		return getProfile3d(
 			new Matrix4d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1))
-			.getShapeList(canvas);
+			.geetShapeList(canvas);
 	}
 
 	/**
 	 * implemented by Chandu to show numbering of curves
 	 */
-	public LinkedList getStringList() {
+	public LinkedList geetStringList() {
 		LinkedList strings = new LinkedList();
 		String curveStr = new String();
 		for (int i = 0; i < curves.size(); i++) {

@@ -220,7 +220,7 @@ public class Ellipse extends ImpObject {
 	 *  (2) This circle is transformed ito 3D space by: translating to "center"
 	 *  and aligning "normal" as new Z-axis.
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		LinkedList shapeList = new LinkedList();
 		if (startAngle != endAngle) {
 			if (segments < 3)
@@ -253,7 +253,7 @@ public class Ellipse extends ImpObject {
 				}
 				transformMatrix.transform(end);
 				LineSegment ls = new LineSegment(start, end);
-				shapeList.addAll(ls.getShapeList(canvas));
+				shapeList.addAll(ls.geetShapeList(canvas));
 			}
 		}
 		return shapeList;

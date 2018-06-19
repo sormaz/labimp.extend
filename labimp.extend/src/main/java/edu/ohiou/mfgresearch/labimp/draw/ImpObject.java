@@ -367,7 +367,7 @@ public abstract class ImpObject extends ViewObject
 		if (writerName != null && !writerName.equalsIgnoreCase("")) {
 			try {
 				Class handlerClass = Class.forName(writerName);
-				Constructor c = handlerClass.getConstructor(gettXMLWriterArgTypes());
+				Constructor c = handlerClass.getConstructor(geettXMLWriterArgTypes());
 				writer =(ImpXmlWriter) c.newInstance(args);
 //				writer = (ImpXmlWriter) handlerClass.newInstance();
 			} catch (Exception ex) {
@@ -380,7 +380,7 @@ public abstract class ImpObject extends ViewObject
 		return writer;
 	}
 	
-	public Class [] gettXMLWriterArgTypes () {
+	public Class [] geettXMLWriterArgTypes () {
 		Class [] argTypes = new Class [] {};
 		return argTypes;
 	}
@@ -395,7 +395,7 @@ public abstract class ImpObject extends ViewObject
 
     if (canvas instanceof DrawWFPanel) {
       DrawWFPanel drawPanel = (DrawWFPanel) canvas;
-      drawPanel.addDrawShapes(color, getShapeList(drawPanel));
+      drawPanel.addDrawShapes(color, geetShapeList(drawPanel));
 
     }
 
@@ -409,12 +409,12 @@ public abstract class ImpObject extends ViewObject
 	 *          directly on Canvas
 	 * @since   1.2
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		try {
 			if (this.getClass() == Class
 				.forName("edu.ohiou.mfgresearch.labimp.draw.ImpObject")) {
 				WorldCS cs = new WorldCS();
-				return cs.getShapeList(canvas);
+				return cs.geetShapeList(canvas);
 			} else {
 				System.out
 					.println("Method 'public LinkedList getShapeList(DrawWFPanel canvas)' should be implemented in "
@@ -431,7 +431,7 @@ public abstract class ImpObject extends ViewObject
 		return new LinkedList();
 	}
 
-	public LinkedList getDrawList() {
+	public LinkedList geetDrawList() {
 		LinkedList list = new LinkedList();
 //		list.add(new Line2D.Double(3.2, 4.3, 100.3, 200.5));
     list.add(new Ellipse2D.Double (0,0,1,1));

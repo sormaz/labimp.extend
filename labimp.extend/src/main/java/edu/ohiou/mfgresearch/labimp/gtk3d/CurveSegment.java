@@ -27,7 +27,7 @@ public abstract class CurveSegment extends ImpObject {
 	/** Returns start point of line segment.
 	 *
 	 */
-	public abstract Point3d gettStartPoint();
+	public abstract Point3d geettStartPoint();
 
 //	public Point3d getStartPt() {
 //		return startPoint;
@@ -39,7 +39,7 @@ public abstract class CurveSegment extends ImpObject {
 	 *   
 	 */
 
-	public abstract Point3d gettEndPoint();
+	public abstract Point3d geettEndPoint();
 
 //	public Point3d getEndPt() {
 //		return endPoint;

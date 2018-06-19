@@ -100,7 +100,7 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	public DrawWFPanel(DrawableWF inTarget) {
 		this(
 			inTarget,
-			(DrawWFApplet) ((Viewable)inTarget).gettApplet(),
+			(DrawWFApplet) ((Viewable)inTarget).geettApplet(),
 			DEFAULT_VIEW_POINT,
 			DEFAULT_SCALE);
 	}
@@ -285,7 +285,7 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	 */
 
 	public JPanel getPanel() {
-		return applet.gettPanel();
+		return applet.geettPanel();
 	}
 
 	public JPanel makePanel() {
@@ -336,8 +336,8 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 		this.needsUpdate = needUpdate;
 	}
 
-	public Color gettColor() {
-		return target.gettColor();
+	public Color geettColor() {
+		return target.geettColor();
 	}
 
 	public void settColor(Color color) {
@@ -351,10 +351,10 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	public void settCanvas(DrawWFPanel inCanvas) {
 	}
 
-	public JPanel gettCanvas() {
+	public JPanel geettCanvas() {
 		return this;
 	}
-	public GUIApplet getApplet() {
+	public GUIApplet geetApplet() {
 		return applet;
 	}
 
@@ -450,12 +450,12 @@ public void addFillShapes (Color color, Collection newShapes) {
 	/** get shapes list.
 	 *  (from target)
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		LinkedList shapes = new LinkedList();
 		if (target != null)
-			shapes.addAll(target.getShapeList(this));
+			shapes.addAll(target.geetShapeList(this));
 		if (showWorldCS) {
-			shapes.addAll(wcs.getShapeList(this));
+			shapes.addAll(wcs.geetShapeList(this));
 		}
 		return shapes;
 	}
@@ -866,9 +866,9 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 		 */
 		public void paintt(Graphics2D g) {
 			if (target != null) {
-				if (target.gettColor() == null) {
+				if (target.geettColor() == null) {
 					if (needsUpdate) {
-						shapeList = getShapeList(DrawWFPanel.this);
+						shapeList = geetShapeList(DrawWFPanel.this);
 						needsUpdate = false;
 					}
 					for (Iterator itr = shapeList.iterator(); itr.hasNext();) {
@@ -1158,7 +1158,7 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 	}
 
 	
-	public Rectangle2D getBoundigBox() {
+	public Rectangle2D geetBoundigBox() {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -19,7 +19,7 @@ public class Torus extends ImpObject {
 		this.r = r;
 	}
 	
-	public LinkedList<Shape> getShapeList (DrawWFPanel canvas) {
+	public LinkedList<Shape> geetShapeList (DrawWFPanel canvas) {
 		LinkedList<Shape> list = new  LinkedList<Shape>();
 		Point3d  oldPoint, newPoint;
 		oldPoint = new Point3d(R+r,0,0);
@@ -36,7 +36,7 @@ public class Torus extends ImpObject {
 				z = r * sin (toRadians(theta));
 				newPoint = new Point3d (x,y,z);
 				LineSegment ls = new LineSegment(oldPoint, newPoint);
-				list.addAll(ls.getShapeList(canvas));
+				list.addAll(ls.geetShapeList(canvas));
 				oldPoint = newPoint;
 			}
 		}

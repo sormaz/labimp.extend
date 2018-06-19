@@ -55,7 +55,7 @@ public class BezierCurve extends ImpObject {
       double u1 = (double) i / (double) nsteps;
       double u2 = (double) (i+1) / (double) nsteps;
       LineSegment ls = new LineSegment (calculatePoint(u1), calculatePoint(u2));
-      list.addAll(ls.getShapeList(canvas));
+      list.addAll(ls.geetShapeList(canvas));
     }
     return list;
   }
@@ -64,12 +64,12 @@ public class BezierCurve extends ImpObject {
 	    LinkedList list = new LinkedList();
 	    for (int i = 0; i < points.size(); i++) {
 	        LineSegment line = new LineSegment ((Point3d) points.get(i), (Point3d)points.get((i+1 )% points.size()));
-	        list.addAll(line.getShapeList (canvas));
+	        list.addAll(line.geetShapeList (canvas));
 	      }
 	    return list;
   }
 
-  public LinkedList getShapeList (DrawWFPanel canvas) {
+  public LinkedList geetShapeList (DrawWFPanel canvas) {
     LinkedList list = getShapeContour (canvas);
     list.addAll(getControlContour(canvas));
     return list;

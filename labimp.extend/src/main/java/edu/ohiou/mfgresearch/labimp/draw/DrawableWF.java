@@ -32,14 +32,14 @@ public interface DrawableWF {
 	public void paintComponent(Graphics2D g);
 	public void paintComponent(Graphics2D g, DrawWFPanel canvas);
 	public void settCanvas(DrawWFPanel canvas);
-	public JPanel gettCanvas();
-  public Color gettColor();
+	public JPanel geettCanvas();
+  public Color geettColor();
   public void settColor (Color c);
 	public void setNeedUpdate(boolean needUpdate);
 	public void repaint();
 	//  public JPanel getCanvas();
 	// return a LinkedList of 2D shapes representing target.
-	public LinkedList getShapeList(DrawWFPanel canvas);
+	public LinkedList geetShapeList(DrawWFPanel canvas);
   public void makeShapeSets(DrawWFPanel canvas);
 	public LinkedList getPointSet();
 }

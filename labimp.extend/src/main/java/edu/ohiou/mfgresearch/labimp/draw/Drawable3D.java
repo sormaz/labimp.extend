@@ -29,5 +29,5 @@ public interface Drawable3D {
 	public void startAnimation();
 	public void stopAnimation();
 	public void settCanvas(AnimPanel canvas);
-	public JPanel gettCanvas();
+	public JPanel geettCanvas();
 }

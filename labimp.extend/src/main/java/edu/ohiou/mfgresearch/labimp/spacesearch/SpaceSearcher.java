@@ -619,7 +619,7 @@ public class SpaceSearcherPanel extends ViewPanel {
       solutionPane.setBackground(Color.white);
       pane.addTab("Search Space", searchTree);
       pane.addTab("Solution", solutionPane);
-      SpaceSearcher.this.gettApplet().setJMenuBar(menuBar);
+      SpaceSearcher.this.geettApplet().setJMenuBar(menuBar);
       GridLayout gridLayout1 = new GridLayout();
       JPanel jPanel4 = new JPanel();
       BorderLayout borderLayout12 = new BorderLayout();
@@ -949,13 +949,13 @@ public class SpaceSearcherPanel extends ViewPanel {
         gStateLabel.setText("Goal State: " + goalState);
         if (goalState instanceof Viewable) {
           ((Viewable) goalState).init();
-          goalStatePanel.add(((Viewable)goalState).gettPanel());
+          goalStatePanel.add(((Viewable)goalState).geettPanel());
         }
         cStateLabel
         .setText("Current State: " + getCurrentState().toString());
         if (getCurrentState() instanceof Viewable) {
           ((Viewable) getCurrentState()).init();
-          currentStatePanel.add(((Viewable)getCurrentState()).gettPanel());
+          currentStatePanel.add(((Viewable)getCurrentState()).geettPanel());
         }
 //        dsormaz commented out next line on 11.15.07
 //        SpaceSearcher.this.closed.add(goalState);
@@ -969,7 +969,7 @@ public class SpaceSearcherPanel extends ViewPanel {
         solutionPane.add(solutionView, BorderLayout.CENTER);
         solutionPane.revalidate();
         menuItemClear.setEnabled(true);
-        SpaceSearcher.this.gettApplet().repaint();
+        SpaceSearcher.this.geettApplet().repaint();
       } else {
         if (SpaceSearcher.this.initialState
             .equals(SpaceSearcher.this.getCurrentState())) {
@@ -983,7 +983,7 @@ public class SpaceSearcherPanel extends ViewPanel {
           this.currentStatePanel.revalidate();
           createNodes(SpaceSearcher.this.getCurrentState());
           this.currentStatePanel.revalidate();
-          SpaceSearcher.this.gettApplet().repaint();
+          SpaceSearcher.this.geettApplet().repaint();
         } else {
           goalStatePanel.removeAll();
           gStateLabel.setText("GoalState: "
@@ -994,7 +994,7 @@ public class SpaceSearcherPanel extends ViewPanel {
             if (goalState instanceof Viewable) {
             ((Viewable) goalState).init();
             goalStatePanel.add(
-                ((Viewable)goalState).gettPanel(),
+                ((Viewable)goalState).geettPanel(),
                 BorderLayout.CENTER);
           }
             else {
@@ -1010,7 +1010,7 @@ public class SpaceSearcherPanel extends ViewPanel {
           if (getCurrentState() instanceof Viewable) {
             ((Viewable) SpaceSearcher.this.getCurrentState()).init();
             this.currentStatePanel.add(((Viewable)getCurrentState())
-                .gettPanel(), BorderLayout.CENTER);
+                .geettPanel(), BorderLayout.CENTER);
           }
           // dsormaz modified current state to init state to enanble tree update
           createNodes(SpaceSearcher.this.getCurrentState());
@@ -1027,7 +1027,7 @@ public class SpaceSearcherPanel extends ViewPanel {
           solutionPane.removeAll();
           solutionPane.add(solutionView, BorderLayout.CENTER);
           solutionPane.revalidate();
-          SpaceSearcher.this.gettApplet().repaint();
+          SpaceSearcher.this.geettApplet().repaint();
         }
       }
     }
@@ -1150,11 +1150,11 @@ public class SpaceSearcherPanel extends ViewPanel {
           cStateLabel.setText("Current State");
           gStateLabel.setText("Goal State");
           selectedStateLabel.setText("Selected State:");
-          initialStatePanel.remove(((Viewable)initialState).gettPanel());
-          currentStatePanel.remove(((Viewable)getCurrentState()).gettPanel());
+          initialStatePanel.remove(((Viewable)initialState).geettPanel());
+          currentStatePanel.remove(((Viewable)getCurrentState()).geettPanel());
           goalStatePanel.removeAll();
           goalStatePanel.add(gStateLabel, BorderLayout.NORTH);
-          selectedStatePanel.remove(((Viewable)getCurrentState()).gettPanel());
+          selectedStatePanel.remove(((Viewable)getCurrentState()).geettPanel());
           initialState = null;
           setCurrentState(null);
           goalState = null;
@@ -1259,7 +1259,7 @@ public class SpaceSearcherPanel extends ViewPanel {
         this.selectedStatePanel.removeAll();
         if (getCurrentState() instanceof Viewable) {
           ((Viewable) SpaceSearcher.this.getCurrentState()).init();
-          JPanel localPanel =((Viewable)getCurrentState()).gettPanel();
+          JPanel localPanel =((Viewable)getCurrentState()).geettPanel();
           this.selectedStatePanel.add(localPanel,BorderLayout.CENTER);  
 //          if (currentState instanceof Drawable2D) {
 //            if (canvas != null) {
@@ -1279,7 +1279,7 @@ public class SpaceSearcherPanel extends ViewPanel {
             this.selectedStateLabel,
             BorderLayout.NORTH);
         this.selectedStatePanel.revalidate();
-        SpaceSearcher.this.gettApplet().repaint();
+        SpaceSearcher.this.geettApplet().repaint();
       }
     }
 
@@ -1309,7 +1309,7 @@ public class SpaceSearcherPanel extends ViewPanel {
       if (initialState instanceof Viewable) {
         ((Viewable) initialState).init();
         this.initialStatePanel.add(
-            ((Viewable)initialState).gettPanel(),
+            ((Viewable)initialState).geettPanel(),
             BorderLayout.CENTER);      
       }
       else {
@@ -1318,7 +1318,7 @@ public class SpaceSearcherPanel extends ViewPanel {
       if (goalState != null) {
       if (goalState instanceof Viewable) {
         ((Viewable) goalState).init();
-        this.goalStatePanel.add(((Viewable)goalState).gettPanel(), BorderLayout.CENTER);
+        this.goalStatePanel.add(((Viewable)goalState).geettPanel(), BorderLayout.CENTER);
       }
       else {
         goalStatePanel.add(new JLabel(goalState.toString()), BorderLayout.CENTER);

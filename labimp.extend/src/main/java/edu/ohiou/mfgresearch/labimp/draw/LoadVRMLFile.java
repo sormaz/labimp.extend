@@ -104,14 +104,14 @@ public class LoadVRMLFile extends ImpObject  {
 	 * depending on whether the user checks the 'newuniversecheckbox'
 	 */
 	void openVRMLFileButtonActionPerformed(ActionEvent e) {
-		int optionChosen = vrmlFileChooser.showOpenDialog(gettApplet());
+		int optionChosen = vrmlFileChooser.showOpenDialog(geettApplet());
 		if (optionChosen == JFileChooser.APPROVE_OPTION) {
 			vrmlFile = vrmlFileChooser.getSelectedFile();
 			if (!addToNewUniverseCheckBox.isSelected())
-				((AnimPanel) ((AnimApplet) gettApplet()).getCanvas())
+				((AnimPanel) ((AnimApplet) geettApplet()).getCanvas())
 					.addContentBranchGroupToSameUniverse(createSceneGraph());
 			else
-				((AnimPanel) ((AnimApplet) gettApplet()).getCanvas())
+				((AnimPanel) ((AnimApplet) geettApplet()).getCanvas())
 					.addContentBranchGroupToNewUniverse(createSceneGraph());
 		}
 	}

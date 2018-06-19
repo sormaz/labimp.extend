@@ -115,7 +115,7 @@ public class AnimPanel extends JPanel implements Drawable3D {
 	 * @param target 3D object to be viewed
 	 */
 	public AnimPanel(Drawable3D target) {
-		this(target, (AnimApplet) ((Viewable)target).gettApplet(), DEFAULT_VIEW_POINT, SOLID);
+		this(target, (AnimApplet) ((Viewable)target).geettApplet(), DEFAULT_VIEW_POINT, SOLID);
 	}
 
 	/**
@@ -648,7 +648,7 @@ public class AnimPanel extends JPanel implements Drawable3D {
 	 *
 	 */
 
-	public JPanel gettCanvas() {
+	public JPanel geettCanvas() {
 		return this;
 	}
 

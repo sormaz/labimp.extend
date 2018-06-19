@@ -75,8 +75,8 @@ public class DrawWFApplet extends GUIApplet implements DrawableWF {
 	 *
 	 */
 
-	public JPanel gettCanvas() {
-		return ((DrawableWF) target).gettCanvas();
+	public JPanel geettCanvas() {
+		return ((DrawableWF) target).geettCanvas();
 	}
 
 	/** Method to set canvas of applet.
@@ -97,7 +97,7 @@ public class DrawWFApplet extends GUIApplet implements DrawableWF {
 		if (target != null) {
 			//        addPanel();
 			contentPane.setOrientation(target.getPanelOrientation());
-			contentPane.setRightComponent(target.gettPanel());
+			contentPane.setRightComponent(target.geettPanel());
 		} else {
 			contentPane.setRightComponent(new JLabel(
 				"This applet does not have target",
@@ -160,8 +160,8 @@ public void makeShapeSets (DrawWFPanel canvas) {
 	/**
 	 * Returns shape list of panel to be drawn
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
-		return canvas.getShapeList(canvas);
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
+		return canvas.geetShapeList(canvas);
 	}
 
 	/**

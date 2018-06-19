@@ -37,7 +37,7 @@ public class Profile3d extends ImpObject {
 	private Vector3d[] dirr_array;
 	private double pocket_length, pocket_width, corner_radius;
 
-	public Vector3d[] gettDirr_array() {
+	public Vector3d[] geettDirr_array() {
 		return dirr_array;
 	}
 
@@ -109,7 +109,7 @@ public class Profile3d extends ImpObject {
 		this.corner_radius = corner_radius;
 	}
 
-	public Point3d getttPosition() {
+	public Point3d geetttPosition() {
 		return position;
 	}
 	/*
@@ -153,7 +153,7 @@ public class Profile3d extends ImpObject {
 			Object shape = itr.next();
 			if (shape instanceof LineSegment) {
 				LineSegment ls = (LineSegment) shape;
-				shapes.add(new LineSegment(ls.gettStartPoint(), ls.gettEndPoint()));
+				shapes.add(new LineSegment(ls.geettStartPoint(), ls.geettEndPoint()));
 			} else if (shape instanceof Arc) {
 				Arc inArc = (Arc) shape;
 				shapes.add(new Arc(inArc));
@@ -294,11 +294,11 @@ public class Profile3d extends ImpObject {
 		for (ListIterator itr = shapes.listIterator(); itr.hasNext();) {
 			Object shape = itr.next();
 			if (shape instanceof LineSegment) {
-				sortedSet.add(((LineSegment) shape).gettStartPoint());
-				sortedSet.add(((LineSegment) shape).gettEndPoint());
+				sortedSet.add(((LineSegment) shape).geettStartPoint());
+				sortedSet.add(((LineSegment) shape).geettEndPoint());
 			}
 			if (shape instanceof Arc)
-				sortedSet.add(((Arc) shape).gettCenter());
+				sortedSet.add(((Arc) shape).geettCenter());
 		}
 		return new HashSet(sortedSet);
 	}
@@ -314,8 +314,8 @@ public class Profile3d extends ImpObject {
 		for (ListIterator itr = shapes.listIterator(); itr.hasNext();) {
 			Object shape = itr.next();
 			if (shape instanceof LineSegment) {
-				pointSet.add(((LineSegment) shape).gettStartPoint());
-				pointSet.add(((LineSegment) shape).gettEndPoint());
+				pointSet.add(((LineSegment) shape).geettStartPoint());
+				pointSet.add(((LineSegment) shape).geettEndPoint());
 			}
 		}
 		return pointSet;
@@ -332,7 +332,7 @@ public class Profile3d extends ImpObject {
 		for (ListIterator itr = shapes.listIterator(); itr.hasNext();) {
 			Object shape = itr.next();
 			if (shape instanceof Arc)
-				pointSet.add(((Arc) shape).gettCenter());
+				pointSet.add(((Arc) shape).geettCenter());
 		}
 		return pointSet;
 	}
@@ -347,7 +347,7 @@ public class Profile3d extends ImpObject {
 
 	}
 
-	public Plane gettPlane() throws InvalidPlaneException {
+	public Plane geettPlane() throws InvalidPlaneException {
 		if (!issPlanar()) {
 			throw new InvalidPlaneException("Profile " + toString() + "is not planar");
 		}
@@ -379,7 +379,7 @@ public class Profile3d extends ImpObject {
 			if (curve instanceof Arc) {
 				Arc arc = (Arc) curve;
 				try {
-					tryPlane = new Plane(arc.gettCenter(), arc.gettNormal());
+					tryPlane = new Plane(arc.geettCenter(), arc.geettNormal());
 					plane = tryPlane;
 					isPlanar = true;
 				} catch (Exception e) {
@@ -473,7 +473,7 @@ public class Profile3d extends ImpObject {
 	 */
 
 	public Prof2d transformTo2d(Matrix4d matrix) throws InvalidCurveException, InvalidPlaneException {
-		Vector3d normal = gettPlane().getNormal();
+		Vector3d normal = geettPlane().getNormal();
 		Prof2d prof2d = new Prof2d();
 		curveMap = new HashMap();
 		if (issPlanar()) {
@@ -497,11 +497,11 @@ public class Profile3d extends ImpObject {
 				if (shape instanceof Arc) {
 					Arc tempArc = (Arc) shape;
 					System.out.println("3d Arc angles:" + tempArc.getStartAngle() + " and " + tempArc.getEndAngle());
-					if (!tempArc.gettNormal().epsilonEquals(normal, GtkConstants.EPSILON))
+					if (!tempArc.geettNormal().epsilonEquals(normal, GtkConstants.EPSILON))
 						tempArc = (Arc) tempArc.swap();
 					tempArc = (tempArc).transform(matrix);
 
-					Vector3d arcX = tempArc.gettXAxis();
+					Vector3d arcX = tempArc.geettXAxis();
 					double angleX = arcX.angle(GeometryConstants.X_VECTOR);
 					// System.out.println("Angle between X axes: " + angleX);
 					Point2d center = new Point2d(tempArc.center.x, tempArc.center.y);
@@ -526,10 +526,10 @@ public class Profile3d extends ImpObject {
 		transformMatrix = new Matrix4d();
 		Matrix4d rotationMatrix = null;
 		try {
-			Vector3d normal = gettPlane().getNormal();
-			Point3d pt = ((CurveSegment) getShapes().getFirst()).gettStartPoint();
+			Vector3d normal = geettPlane().getNormal();
+			Point3d pt = ((CurveSegment) getShapes().getFirst()).geettStartPoint();
 
-			double distance = gettPlane().distancePointPlane(GeometryConstants.ORIGIN);
+			double distance = geettPlane().distancePointPlane(GeometryConstants.ORIGIN);
 			Vector3d tPoint = new Vector3d(normal);
 			tPoint.scale(distance);
 			// tPoint.negate();
@@ -555,7 +555,7 @@ public class Profile3d extends ImpObject {
 		return transform(Gtk.computeTransformMatrix(vector));
 	}
 
-	public HashMap gettCurveMap() {
+	public HashMap geettCurveMap() {
 		return curveMap;
 	}
 
@@ -575,14 +575,14 @@ public class Profile3d extends ImpObject {
 	 * Method that defines the display properties of Profile3d.
 	 * 
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		LinkedList shapeList = new LinkedList();
 		for (ListIterator itr = shapes.listIterator(); itr.hasNext();) {
 			Object shape = itr.next();
 			if (shape instanceof LineSegment)
-				shapeList.addAll(((LineSegment) shape).getShapeList(canvas));
+				shapeList.addAll(((LineSegment) shape).geetShapeList(canvas));
 			if (shape instanceof Arc)
-				shapeList.addAll(((Arc) shape).getShapeList(canvas));
+				shapeList.addAll(((Arc) shape).geetShapeList(canvas));
 		}
 		return shapeList;
 	}

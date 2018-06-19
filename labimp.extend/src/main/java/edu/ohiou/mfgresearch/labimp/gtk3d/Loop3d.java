@@ -36,18 +36,18 @@ public class Loop3d extends Profile3d {
 //			return true;
 //		}
 		CurveSegment last = (CurveSegment) getShapes().getLast();
-		if (last.gettEndPoint().epsilonEquals(inCurve.gettEndPoint(), 
+		if (last.geettEndPoint().epsilonEquals(inCurve.geettEndPoint(), 
 				GeometryConstants.EPSILON)
-			|| last.gettStartPoint().epsilonEquals(
-				inCurve.gettStartPoint(),
+			|| last.geettStartPoint().epsilonEquals(
+				inCurve.geettStartPoint(),
 				GeometryConstants.EPSILON)) {
 			addShape(inCurve.swap());
 			return true;
 		}
-		if (last.gettEndPoint().epsilonEquals(inCurve.gettStartPoint(), 
+		if (last.geettEndPoint().epsilonEquals(inCurve.geettStartPoint(), 
 				GeometryConstants.EPSILON)
-			|| last.gettStartPoint().epsilonEquals(
-				inCurve.gettEndPoint(),
+			|| last.geettStartPoint().epsilonEquals(
+				inCurve.geettEndPoint(),
 				GeometryConstants.EPSILON)) {
 			addShape(inCurve);
 			return true;
@@ -77,14 +77,14 @@ public class Loop3d extends Profile3d {
 		return loop2d;
 	}
 
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		LinkedList shapeList = new LinkedList();
 		for (ListIterator itr = getShapes().listIterator(); itr.hasNext();) {
 			Object shape = itr.next();
 			if (shape instanceof LineSegment)
-				shapeList.addAll(((LineSegment) shape).getShapeList(canvas));
+				shapeList.addAll(((LineSegment) shape).geetShapeList(canvas));
 			if (shape instanceof Arc)
-				shapeList.addAll(((Arc) shape).getShapeList(canvas));
+				shapeList.addAll(((Arc) shape).geetShapeList(canvas));
 		}
 		return shapeList;
 	}

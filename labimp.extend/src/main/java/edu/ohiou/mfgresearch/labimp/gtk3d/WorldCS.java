@@ -68,11 +68,11 @@ public class WorldCS extends ImpObject {
 	 * @param canvas canvas on which to draw
 	 * @return the list of objects that implement Shape interface to be drawn
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		LinkedList ll = new LinkedList();
-		ll.addAll(xAxis.getShapeList(canvas));
-		ll.addAll(yAxis.getShapeList(canvas));
-		ll.addAll(zAxis.getShapeList(canvas));
+		ll.addAll(xAxis.geetShapeList(canvas));
+		ll.addAll(yAxis.geetShapeList(canvas));
+		ll.addAll(zAxis.geetShapeList(canvas));
 		return ll;
 	}
 

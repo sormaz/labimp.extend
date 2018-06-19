@@ -46,7 +46,7 @@ public abstract class DefaultGraphEdge implements GraphEdge{
 		canvas = arg0;
 	}
 
-	public JPanel gettCanvas() {
+	public JPanel geettCanvas() {
 		return canvas;
 	}
 
@@ -77,7 +77,7 @@ public abstract class DefaultGraphEdge implements GraphEdge{
 		this.fillColor = fillColor;
 	}
 	
-	  public GraphicsConfiguration getGraphicsConfig () {
+	  public GraphicsConfiguration geetGraphicsConfig () {
 		  if (graphics == null) {
 			  graphics = new GraphicsConfiguration();
 			  graphics.configure(this);
@@ -102,11 +102,11 @@ public abstract class DefaultGraphEdge implements GraphEdge{
 			makeDefaultShape();
 			}
 			
-			canvas.addDrawShapes(color, getDrawList());
-			canvas.addFillShapes(fillColor, getFillList());
+			canvas.addDrawShapes(color, geetDrawList());
+			canvas.addFillShapes(fillColor, geetFillList());
 		}
 
-	public LinkedList getDrawList() {
+	public LinkedList geetDrawList() {
 			LinkedList toReturn = new LinkedList();
 			if(isDefaultShape)
 			{
@@ -118,12 +118,12 @@ public abstract class DefaultGraphEdge implements GraphEdge{
 			}
 			else
 			{
-				toReturn.addAll(((Drawable2D)arc.getUserObject()).getDrawList());
+				toReturn.addAll(((Drawable2D)arc.getUserObject()).geetDrawList());
 			}
 			return toReturn;
 		}
 
-	public LinkedList getFillList() {
+	public LinkedList geetFillList() {
 		LinkedList toReturn = new LinkedList();
 		if(isDefaultShape)
 		{
@@ -135,18 +135,18 @@ public abstract class DefaultGraphEdge implements GraphEdge{
 		}
 		else
 		{
-			toReturn.addAll(((Drawable2D)arc.getUserObject()).getFillList());
+			toReturn.addAll(((Drawable2D)arc.getUserObject()).geetFillList());
 		}
 		return toReturn;
 	}
 
-	public LinkedList getStringList() {
+	public LinkedList geetStringList() {
 	
 		LinkedList toReturn = new LinkedList();
 		Line2D.Double line = (Line2D.Double)arcShape;
 		if(!isDefaultShape)
 		{
-			toReturn.addAll(((Drawable2D)arc.getUserObject()).getStringList());
+			toReturn.addAll(((Drawable2D)arc.getUserObject()).geetStringList());
 		}
 		else
 		{
@@ -205,7 +205,7 @@ public abstract class DefaultGraphEdge implements GraphEdge{
 
 	public void setArc(Arc arc) {}
 
-	public Point2D gettPosition() {
+	public Point2D geettPosition() {
 		Point2D.Double toReturn = new Point2D.Double();
 		toReturn.setLocation((sourceLoc.getX()+sinkLoc.getX())/2, (sourceLoc.getY()+sinkLoc.getY())/2);
 		return toReturn;

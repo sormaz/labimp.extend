@@ -81,7 +81,7 @@ public class BezierCurve2D extends ViewObject {
 //			return list;
 //		}
 
-		public LinkedList getDrawList () {
+		public LinkedList geetDrawList () {
 			LinkedList list = new LinkedList();
 			for (int i = 0; i < nsteps; i++) {
 				double u1 = (double) i / (double) nsteps;

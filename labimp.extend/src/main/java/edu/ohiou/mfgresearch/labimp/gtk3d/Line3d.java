@@ -242,10 +242,10 @@ public class Line3d extends ImpObject {
 			+ ">");
 	}
 
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		LineSegment ls = new LineSegment(pointOnLine(-1), pointOnLine(1));
-		LinkedList ll = ls.getShapeList(canvas);
-		ll.addAll(new WorldCS().getShapeList(canvas));
+		LinkedList ll = ls.geetShapeList(canvas);
+		ll.addAll(new WorldCS().geetShapeList(canvas));
 		return ll;
 	}
 

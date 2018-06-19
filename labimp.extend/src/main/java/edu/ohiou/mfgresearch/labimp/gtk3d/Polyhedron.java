@@ -68,10 +68,10 @@ public class Polyhedron extends ImpObject {
 		}
 	}
 
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		LinkedList lines = new LinkedList();
 		for (ListIterator itr = polygons.listIterator(); itr.hasNext();) {
-			lines.addAll(((Polygon3d) itr.next()).getShapeList(canvas));
+			lines.addAll(((Polygon3d) itr.next()).geetShapeList(canvas));
 		}
 		return lines;
 	}
@@ -151,8 +151,8 @@ public class Polyhedron extends ImpObject {
 	 * @return
 	 */
 	public boolean isCurveInside (LineSegment line) {
-		return isPointInside (line.gettStartPoint()) && 
-		isPointInside (line.gettEndPoint());
+		return isPointInside (line.geettStartPoint()) && 
+		isPointInside (line.geettEndPoint());
 	}
 
 	/**
@@ -162,8 +162,8 @@ public class Polyhedron extends ImpObject {
 	 * @return
 	 */
 	public boolean isCurveInside (Arc arc) {
-		return isPointInside (arc.gettStartPoint()) && 
-		isPointInside (arc.gettEndPoint());
+		return isPointInside (arc.geettStartPoint()) && 
+		isPointInside (arc.geettEndPoint());
 	}
 	
 	//Modifier Methods

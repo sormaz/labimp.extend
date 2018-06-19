@@ -666,7 +666,7 @@ public class Arc2d extends Curve2d {
 	}
 
 	public LinkedList getShapeList(DrawWFPanel canvas) {
-		return getArc().getShapeList(canvas);
+		return getArc().geetShapeList(canvas);
 	}
 
 	public static void main(String[] args) {

@@ -728,7 +728,7 @@ public class Line2d extends Curve2d {
 	}
 
 	public LinkedList getShapeList(DrawWFPanel canvas) {
-		return getLineSegment().getShapeList(canvas);
+		return getLineSegment().geetShapeList(canvas);
 	}
 
 	public Line2d transform(Matrix3d transformationMatrix) {

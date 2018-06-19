@@ -142,7 +142,7 @@ public class Profile2D extends ViewObject {
 
     System.out.println("area" + profile.areaTwo());
     profile.settApplet(new Draw2DApplet (profile));
-    ((Draw2DPanel)profile.gettCanvas()).setDisplayStrings(true);
+    ((Draw2DPanel)profile.geettCanvas()).setDisplayStrings(true);
     profile.display();
   }
 
@@ -152,7 +152,7 @@ public class Profile2D extends ViewObject {
   }
 
 
-  public LinkedList getDrawList () {
+  public LinkedList geetDrawList () {
     LinkedList shapeList = new LinkedList();
     int size = points.size();
     for (int i = 0; i < size; i++)
@@ -161,7 +161,7 @@ public class Profile2D extends ViewObject {
     return shapeList;
   }
 
-  public LinkedList getStringList () {
+  public LinkedList geetStringList () {
     LinkedList strings = new LinkedList();
     strings.add(new DrawString (toString(), 0,0));
     return strings;

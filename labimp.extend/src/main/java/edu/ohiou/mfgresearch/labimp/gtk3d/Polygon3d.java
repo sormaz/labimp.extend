@@ -63,8 +63,8 @@ public class Polygon3d extends ImpObject {
 		while (!isValid()) {
 			// ImpObject.doNothing(staticPanel,"polygon is null");
 		}
-		panel.gettApplet().appletFrame.dispose();
-		panel.gettApplet().destroy();
+		panel.geettApplet().appletFrame.dispose();
+		panel.geettApplet().destroy();
 		//    return panel.polygon;
 	}
 
@@ -75,8 +75,8 @@ public class Polygon3d extends ImpObject {
 		while ((guiObject == null) || !((Polygon3d) guiObject).isValid()) {
 			// ImpObject.doNothing(staticPanel,"polygon is null");
 		}
-		staticPanel.gettApplet().appletFrame.dispose();
-		staticPanel.gettApplet().destroy();
+		staticPanel.geettApplet().appletFrame.dispose();
+		staticPanel.geettApplet().destroy();
 		return (Polygon3d) guiObject;
 	}
 
@@ -333,7 +333,7 @@ public class Polygon3d extends ImpObject {
 	public void init() {
 		super.init();
 		panel = new Polygon3dPanel(this);
-		((ViewPanel) panel).settApplet(this.gettApplet());
+		((ViewPanel) panel).settApplet(this.geettApplet());
 		guiObject = this;
 		((Polygon3dPanel) panel).init();
 	}
@@ -341,13 +341,13 @@ public class Polygon3d extends ImpObject {
 	/**
 	 * Method to display Polygon3d on drawWFCanvas.
 	 */
-	public LinkedList getShapeList(DrawWFPanel wfCanvas) {
+	public LinkedList geetShapeList(DrawWFPanel wfCanvas) {
 		LinkedList polyList = new LinkedList();
 		int size = pointSet.size();
 		for (int i = 0; i < size; i++)
 			polyList.addAll(new LineSegment(
 				(Point3d) pointSet.get(i % size),
-				(Point3d) pointSet.get((i + 1) % size)).getShapeList(wfCanvas));
+				(Point3d) pointSet.get((i + 1) % size)).geetShapeList(wfCanvas));
 		return polyList;
 	}
 
@@ -679,9 +679,9 @@ public class Polygon3d extends ImpObject {
 					public void actionPerformed(ActionEvent e) {
 						if (object != null) {
 							//      polygon.pointSet.add (new Point3d() );
-							Polygon3dPanel.this.gettApplet().appletFrame
+							Polygon3dPanel.this.geettApplet().appletFrame
 								.dispose();
-							Polygon3dPanel.this.gettApplet().destroy();
+							Polygon3dPanel.this.geettApplet().destroy();
 							object.settApplet(new DrawWFApplet(object));
 							object.display(object.toString());
 						}

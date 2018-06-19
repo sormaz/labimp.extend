@@ -46,7 +46,7 @@ public class Helix extends CurveSegment {
 	/* (non-Javadoc)
 	 * @see edu.ohiou.mfgresearch.labimp.gtk3d.CurveSegment#getEndPoint()
 	 */
-	public Point3d gettEndPoint() {
+	public Point3d geettEndPoint() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -54,7 +54,7 @@ public class Helix extends CurveSegment {
 	/* (non-Javadoc)
 	 * @see edu.ohiou.mfgresearch.labimp.gtk3d.CurveSegment#getStartPoint()
 	 */
-	public Point3d gettStartPoint() {
+	public Point3d geettStartPoint() {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -69,7 +69,7 @@ public class Helix extends CurveSegment {
 	
 	// DrawableWF interface
 	
-	public LinkedList getShapeList (DrawWFPanel canvas){
+	public LinkedList geetShapeList (DrawWFPanel canvas){
 		LinkedList shapeList = new LinkedList();
 		
 			if (segments < 3)
@@ -120,7 +120,7 @@ public class Helix extends CurveSegment {
 							zIncrement * (i + 1));
 				transformMatrix.transform(end);
 				LineSegment ls = new LineSegment(start, end);
-				shapeList.addAll(ls.getShapeList(canvas));
+				shapeList.addAll(ls.geetShapeList(canvas));
 			}
 		
 		return shapeList;

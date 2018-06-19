@@ -59,7 +59,7 @@ public class LineSegment extends CurveSegment  {
   public boolean isPointOnLineSegment (Point3d point) {
     try {
       Line3d line = new Line3d (this);
-      double endFactor = line.factorForPoint(gettEndPoint());
+      double endFactor = line.factorForPoint(geettEndPoint());
       double pointFactor = line.factorForPoint(point);
       return 0.0 <= pointFactor ? pointFactor <= endFactor : false;
     }
@@ -75,7 +75,7 @@ public class LineSegment extends CurveSegment  {
  public boolean isPointInLineSegment (Point3d point) {
    try {
      Line3d line = new Line3d (this);
-     double endFactor = line.factorForPoint(gettEndPoint());
+     double endFactor = line.factorForPoint(geettEndPoint());
      double pointFactor = line.factorForPoint(point);
      return 0.0 < pointFactor ? pointFactor < endFactor : false;
    }
@@ -158,7 +158,7 @@ public class LineSegment extends CurveSegment  {
 	/** Returns start point of line segment.
 	 *
 	 */
-	public Point3d gettStartPoint() {
+	public Point3d geettStartPoint() {
 		return startPoint;
 	}
 	
@@ -172,7 +172,7 @@ public class LineSegment extends CurveSegment  {
 	 *   
 	 *   
 	 */
-	public Point3d gettEndPoint() {
+	public Point3d geettEndPoint() {
 		return endPoint;
 	}
 	
@@ -213,7 +213,7 @@ public class LineSegment extends CurveSegment  {
    
    public CurveSegment swap()
    {
-   	LineSegment line =  new LineSegment(this.gettEndPoint(), this.gettStartPoint());   	
+   	LineSegment line =  new LineSegment(this.geettEndPoint(), this.geettStartPoint());   	
    	return line;
    }
 
@@ -237,7 +237,7 @@ public class LineSegment extends CurveSegment  {
   /** get shapes list - a linked list of 2D shapes representing line segment.
    *  (called by DrawWFCanvas getShapeList)
    */
-  public LinkedList getShapeList(DrawWFPanel canvas) {
+  public LinkedList geetShapeList(DrawWFPanel canvas) {
     LinkedList shapeList = new LinkedList();
     
     //Arif Ahmed - 9/11/16
@@ -249,8 +249,8 @@ public class LineSegment extends CurveSegment  {
     //Not using this code for now. But keeping it for future consideration.
     
 //	  if(canvas==null) {
-//		  Point3d startPoint = gettStartPoint();
-//		  Point3d endPoint = gettEndPoint();
+//		  Point3d startPoint = geettStartPoint();
+//		  Point3d endPoint = geettEndPoint();
 //		  
 //		  double[] start = {startPoint.x, startPoint.y, startPoint.z};
 //		  double[] end = {endPoint.x, endPoint.y, endPoint.z};
@@ -273,8 +273,8 @@ public class LineSegment extends CurveSegment  {
    public Line2D.Double createDisplayLine(DrawWFPanel canvas) {
 //	   System.out.println("start point:" + getStartPoint());
 //	   System.out.println("end point:" + getEndPoint());
-    return new Line2D.Double (canvas.createDisplayPoint(gettStartPoint ()),
-				canvas.createDisplayPoint(gettEndPoint ()) );
+    return new Line2D.Double (canvas.createDisplayPoint(geettStartPoint ()),
+				canvas.createDisplayPoint(geettEndPoint ()) );
    }
 
 
@@ -290,11 +290,11 @@ public class LineSegment extends CurveSegment  {
    *  (calls drawWFCanvas paintcomponent)
    */
   public void paintComponent (Graphics2D g) {
-    ((DrawWFPanel) this.gettCanvas()).paintComponent(g);
+    ((DrawWFPanel) this.geettCanvas()).paintComponent(g);
   }
 
   public void paintComponent (Graphics2D g, DrawWFPanel canvas) {
-    ViewObject.doNothing(this, "color is " + gettColor());
+    ViewObject.doNothing(this, "color is " + geettColor());
       g.draw (this.createDisplayLine(canvas));
   }
 
@@ -302,7 +302,7 @@ public class LineSegment extends CurveSegment  {
    *  (calls drawWFCanvas repaint)
    */
      public void repaint() {
-    ((DrawWFPanel) this.gettCanvas()).repaint();
+    ((DrawWFPanel) this.geettCanvas()).repaint();
   }
 
   /** toString() to represent LineSegment.

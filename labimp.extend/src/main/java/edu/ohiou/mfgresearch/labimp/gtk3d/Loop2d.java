@@ -284,11 +284,11 @@ public class Loop2d extends Prof2d {
 		return ((Prof2d) this).toString();
 	}
 	
-	public LinkedList getDrawList()
+	public LinkedList geetDrawList()
 	{
-		if (showArrows == false) return super.getDrawList();
+		if (showArrows == false) return super.geetDrawList();
 		
-		LinkedList lines = super.getDrawList();
+		LinkedList lines = super.geetDrawList();
 		List curves = getCurves();
 //		LinkedList arrows = new LinkedList();
 		Point2d cp = new Point2d();

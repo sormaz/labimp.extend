@@ -127,11 +127,11 @@ public class GraphVertex implements Drawable2D {
 		this.canvas = arg0;
 	}
 
-	public JPanel gettCanvas() {
+	public JPanel geettCanvas() {
 		return canvas;
 	}
 	
-	  public GraphicsConfiguration getGraphicsConfig () {
+	  public GraphicsConfiguration geetGraphicsConfig () {
 		  if (graphics == null) {
 			  graphics = new GraphicsConfiguration();
 			  graphics.configure(this);
@@ -156,12 +156,12 @@ public class GraphVertex implements Drawable2D {
 			makeDefaultShape();
 			//		System.out.println("After makeDefaultShape: "+ ((Ellipse2D)nodeShape).getCenterX()+", "+ ((Ellipse2D)nodeShape).getCenterY());
 		}
-		canvas.addDrawShapes(color, getDrawList());
-		canvas.addFillShapes(fillColor, getFillList());
+		canvas.addDrawShapes(color, geetDrawList());
+		canvas.addFillShapes(fillColor, geetFillList());
 	}
 
 	@SuppressWarnings("unchecked")
-	public LinkedList<Shape> getDrawList() {
+	public LinkedList<Shape> geetDrawList() {
 		LinkedList<Shape> toReturn = new LinkedList<Shape>();
 		if(isDefaultShape)
 		{
@@ -171,13 +171,13 @@ public class GraphVertex implements Drawable2D {
 		{
 //			System.out.println("In getDraw List with userObject");
 			Drawable2D toDraw = (Drawable2D)node.getUserObject();
-			toReturn.addAll(getTransformedList(toDraw.getDrawList().iterator()));					
+			toReturn.addAll(getTransformedList(toDraw.geetDrawList().iterator()));					
 		}				
 		return toReturn;
 	}
 
 	@SuppressWarnings("unchecked")
-	public LinkedList<Shape> getFillList() {
+	public LinkedList<Shape> geetFillList() {
 		LinkedList<Shape> toReturn = new LinkedList<Shape>();
 		if(isDefaultShape)
 		{
@@ -186,7 +186,7 @@ public class GraphVertex implements Drawable2D {
 		else
 		{
 			Drawable2D toDraw = (Drawable2D)node.getUserObject();
-			toReturn.addAll(getTransformedList(toDraw.getFillList().iterator()));
+			toReturn.addAll(getTransformedList(toDraw.geetFillList().iterator()));
 		}				
 		return toReturn;
 	}
@@ -199,8 +199,8 @@ public class GraphVertex implements Drawable2D {
 		Drawable2D userObject =(Drawable2D) node.getUserObject();
 		Shape toAdd = null;
 		DrawString toAddString;
-		transform = AffineTransform.getTranslateInstance(nodeLocation.getX()-userObject.gettPosition().getX(),
-				nodeLocation.getY()-userObject.gettPosition().getY());
+		transform = AffineTransform.getTranslateInstance(nodeLocation.getX()-userObject.geettPosition().getX(),
+				nodeLocation.getY()-userObject.geettPosition().getY());
 		while(drawList.hasNext())
 		{
 			userObjectShape = drawList.next();
@@ -221,13 +221,13 @@ public class GraphVertex implements Drawable2D {
 	}
 
 	@SuppressWarnings("unchecked")
-	public LinkedList<DrawString> getStringList() 
+	public LinkedList<DrawString> geetStringList() 
 	{
 		LinkedList<DrawString> toReturn = new LinkedList<DrawString>();
 		if(node.getUserObject() instanceof Drawable2D && !renderer.isDefault_behavior())
 		{
 			Drawable2D toDraw = (Drawable2D)node.getUserObject();
-			toReturn.addAll(getTransformedList(toDraw.getStringList().iterator()));
+			toReturn.addAll(getTransformedList(toDraw.geetStringList().iterator()));
 		}
 		else
 		{
@@ -257,7 +257,7 @@ public class GraphVertex implements Drawable2D {
 	
 	public void setNeedUpdate(boolean arg0) {}
 
-	public Point2D gettPosition() {
+	public Point2D geettPosition() {
 		return nodeLocation;
 	}
 

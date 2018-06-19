@@ -84,7 +84,7 @@ public class Arc extends CurveSegment {
 		xAxis.normalize();
 		yAxis = new Vector3d(yAxisVec);
 		yAxis.normalize();
-		normal = gettNormal();
+		normal = geettNormal();
 		this.startAngle = startAngle;
 		this.endAngle = endAngle;
 	}
@@ -154,7 +154,7 @@ public class Arc extends CurveSegment {
 
 		// Create inverse matrix to transform Arc to 2D and 
 		// to calculate start and end angles from start and end point.
-		Matrix4d inverseMatrix = Ellipse.getInverseMatrix(cen, xAxisVec, yAxisVec, gettNormal());
+		Matrix4d inverseMatrix = Ellipse.getInverseMatrix(cen, xAxisVec, yAxisVec, geettNormal());
 
 		Point3d startPoint = new Point3d(startPt);
 		inverseMatrix.transform(startPoint);
@@ -184,11 +184,11 @@ public class Arc extends CurveSegment {
 	 *
 	 */
 	public Arc(Arc inArc) {
-		this(inArc.getRadius(), inArc.gettCenter(), inArc.gettNormal(), 
+		this(inArc.getRadius(), inArc.geettCenter(), inArc.geettNormal(), 
 				inArc.getStartAngle(), inArc.getEndAngle());
 		if(inArc.hasAxes()) {
-			this.xAxis = inArc.gettXAxis();
-			this.yAxis = inArc.gettYAxis();
+			this.xAxis = inArc.geettXAxis();
+			this.yAxis = inArc.geettYAxis();
 		}
 	}
 
@@ -288,7 +288,7 @@ public class Arc extends CurveSegment {
 	 *
 	 */
 
-	public Point3d gettCenter() {
+	public Point3d geettCenter() {
 		return new Point3d(center);
 	}
 	
@@ -304,7 +304,7 @@ public class Arc extends CurveSegment {
 	 *
 	 */
 
-	public Vector3d gettNormal() {
+	public Vector3d geettNormal() {
 		if(hasAxes()) {
 			normal = new Vector3d();
 			normal.cross(xAxis,yAxis);
@@ -324,7 +324,7 @@ public class Arc extends CurveSegment {
 	 *
 	 */
 
-	public Vector3d gettXAxis() {
+	public Vector3d geettXAxis() {
 		return new Vector3d(xAxis);
 	}
 	
@@ -339,7 +339,7 @@ public class Arc extends CurveSegment {
 	 *
 	 */
 
-	public Vector3d gettYAxis() {
+	public Vector3d geettYAxis() {
 		return new Vector3d(yAxis);
 	}
 	
@@ -386,7 +386,7 @@ public class Arc extends CurveSegment {
 	 *
 	 */
 
-	public Point3d gettStartPoint() {
+	public Point3d geettStartPoint() {
 		return this.getPointForAngle(startAngle);
 	}
 
@@ -396,7 +396,7 @@ public class Arc extends CurveSegment {
 	 *
 	 */
 
-	public Point3d gettEndPoint() {
+	public Point3d geettEndPoint() {
 		return this.getPointForAngle(endAngle);
 	}
 
@@ -523,8 +523,8 @@ public class Arc extends CurveSegment {
 		Vector3d newXAxis = new Vector3d();
 		Vector3d newYAxis = new Vector3d();
 		transformMatrix.transform(this.center, newCenter);
-		transformMatrix.transform(this.gettXAxis(), newXAxis);
-		transformMatrix.transform(this.gettYAxis(), newYAxis);
+		transformMatrix.transform(this.geettXAxis(), newXAxis);
+		transformMatrix.transform(this.geettYAxis(), newYAxis);
 		return new Arc(
 				this.radius,
 				newCenter,
@@ -543,8 +543,8 @@ public class Arc extends CurveSegment {
 		nStart = Math.PI - this.getEndAngle();
 		nEnd = Math.PI - this.getStartAngle();
 		Vector3d nX = new Vector3d();
-		nX.negate(this.gettXAxis());
-		Arc newArc = new Arc(radius, center, nX, this.gettYAxis(), nStart, nEnd);
+		nX.negate(this.geettXAxis());
+		Arc newArc = new Arc(radius, center, nX, this.geettYAxis(), nStart, nEnd);
 		System.out.println(this + " swapped to " + newArc);		
 		return newArc;
 	}
@@ -588,10 +588,10 @@ public class Arc extends CurveSegment {
 	/** getShapeList() method.
 	 *
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		// if X and Y axis are present
 		if (hasAxes())
-			return new Ellipse(radius, radius, center, xAxis, yAxis, startAngle, endAngle).getShapeList(canvas);
+			return new Ellipse(radius, radius, center, xAxis, yAxis, startAngle, endAngle).geetShapeList(canvas);
 		// If only normal is there
 		LinkedList shapeList = new LinkedList();
 		if (startAngle != endAngle) {
@@ -632,7 +632,7 @@ public class Arc extends CurveSegment {
 				}
 				transformMatrix.transform(end);
 				LineSegment ls = new LineSegment(start, end);
-				shapeList.addAll(ls.getShapeList(canvas));
+				shapeList.addAll(ls.geetShapeList(canvas));
 			}
 		}
 		return shapeList;
@@ -657,8 +657,8 @@ public class Arc extends CurveSegment {
 				+ testPoint
 				+ " on arc? "
 				+ c.isPointOnArc(testPoint) + " " + c1.isPointOnArc(testPoint));
-		System.out.println("Start and end points of c: "+ c.gettStartPoint() + " " + c.gettEndPoint());
-		System.out.println("Start and end points of c1: "+ c1.gettStartPoint() + " " + c1.gettEndPoint());
+		System.out.println("Start and end points of c: "+ c.geettStartPoint() + " " + c.geettEndPoint());
+		System.out.println("Start and end points of c1: "+ c1.geettStartPoint() + " " + c1.geettEndPoint());
 		c.settApplet(new DrawWFApplet(c, new Point3d(0, 0, 30), 20));
 		c.display("Arc", new Dimension(650, 700), JFrame.EXIT_ON_CLOSE);
 		c1.settApplet(new DrawWFApplet(c1, new Point3d(0, 0, 30), 20));

@@ -259,7 +259,7 @@ public class Plane extends ImpObject {
 	/** Returns linked list of 2D shapes representing a plane. (with WCS)
 	 *
 	 */
-	public LinkedList getShapeList(DrawWFPanel canvas) {
+	public LinkedList geetShapeList(DrawWFPanel canvas) {
 		Point3d xPoint = null, yPoint = null, zPoint = null;
 		try {
 			xPoint = this.intersectLinePlane(GeometryConstants.X_AXIS);
@@ -377,9 +377,9 @@ public class Plane extends ImpObject {
 		} // else xpoint
 
 		LinkedList list = new LinkedList();
-		list.addAll(line1.getShapeList(canvas));
-		list.addAll(line2.getShapeList(canvas));
-		list.addAll(line3.getShapeList(canvas));
+		list.addAll(line1.geetShapeList(canvas));
+		list.addAll(line2.geetShapeList(canvas));
+		list.addAll(line3.geetShapeList(canvas));
 //		WorldCS cs = new WorldCS();
 //		list.addAll(cs.getShapeList(canvas));
 		return list;

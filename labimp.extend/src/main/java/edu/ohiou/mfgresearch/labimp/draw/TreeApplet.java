@@ -50,7 +50,7 @@ public class TreeApplet extends GUIApplet {
 
 	public void addPanel() {
 		JTabbedPane tabPanel = new JTabbedPane(SwingConstants.NORTH);
-		tabPanel.addTab("Data", target.gettPanel());
+		tabPanel.addTab("Data", target.geettPanel());
 		Draw2DPanel draw2dPanel = new Draw2DPanel((Drawable2D) target, null);
 		draw2dPanel.init();
 		tabPanel.addTab("2d", draw2dPanel);

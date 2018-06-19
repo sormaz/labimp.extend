@@ -160,7 +160,7 @@ public class AnimApplet extends GUIApplet {
 		if (target != null) {
 			//        addPanel();
 			contentPane.setOrientation(target.getPanelOrientation());
-			contentPane.setRightComponent(target.gettPanel());
+			contentPane.setRightComponent(target.geettPanel());
 		} else {
 			contentPane.setRightComponent(new JLabel(
 				"This applet does not have target",

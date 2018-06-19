@@ -146,8 +146,8 @@ public Collection giveSelectables () {
 
 		
 	public void makeDrawSets() {
-		   if (super.gettCanvas() instanceof Draw2DPanel) {
-		      Draw2DPanel drawPanel = (Draw2DPanel) super.gettCanvas();
+		   if (super.geettCanvas() instanceof Draw2DPanel) {
+		      Draw2DPanel drawPanel = (Draw2DPanel) super.geettCanvas();
 //		      System.out.println("Draw Panel" + ((Object)drawPanel).toString());
 //		      System.out.println(super.getCanvas().toString());
 		      Iterator<GraphVertex> itr = vertexList.iterator();
@@ -169,48 +169,48 @@ public Collection giveSelectables () {
 		    }
 	}
 	
-	public LinkedList<Shape> getDrawList() {
+	public LinkedList<Shape> geetDrawList() {
 		LinkedList<Shape> list = new LinkedList<Shape>();
 		Iterator<GraphVertex> itr = vertexList.iterator();
 		while(itr.hasNext())
 		{
 			
-			list.addAll(itr.next().getDrawList());			
+			list.addAll(itr.next().geetDrawList());			
 		}
 		Iterator<Map.Entry<Arc, GraphEdge>> itr1 = edgeMap.entrySet().iterator();
 		while(itr1.hasNext())
 		{
-			list.addAll(itr1.next().getValue().getDrawList());
+			list.addAll(itr1.next().getValue().geetDrawList());
 		}		
 		return list;
 	}
 	
-	public LinkedList<Shape> getFillList() {
+	public LinkedList<Shape> geetFillList() {
 		LinkedList<Shape> list = new LinkedList<Shape>();
 		Iterator<GraphVertex> itr = vertexList.iterator();
 		while(itr.hasNext())
 		{
-			list.addAll(itr.next().getFillList());			
+			list.addAll(itr.next().geetFillList());			
 		}
 		Iterator<Map.Entry<Arc, GraphEdge>> itr1 = edgeMap.entrySet().iterator();
 		while(itr1.hasNext())
 		{
-			list.addAll(itr1.next().getValue().getFillList());
+			list.addAll(itr1.next().getValue().geetFillList());
 		}
 		return list;
 	}
 	
-	public LinkedList<DrawString> getStringList() {
+	public LinkedList<DrawString> geetStringList() {
 		LinkedList<DrawString> list = new LinkedList<DrawString>();
 		Iterator<GraphVertex> itr = vertexList.iterator();
 		while(itr.hasNext())
 		{
-			list.addAll(itr.next().getStringList());			
+			list.addAll(itr.next().geetStringList());			
 		}
 		Iterator<Map.Entry<Arc, GraphEdge>> itr1 = edgeMap.entrySet().iterator();
 		while(itr1.hasNext())
 		{
-			list.addAll(itr1.next().getValue().getStringList());
+			list.addAll(itr1.next().getValue().geetStringList());
 		}
 		return list;
 	}	
