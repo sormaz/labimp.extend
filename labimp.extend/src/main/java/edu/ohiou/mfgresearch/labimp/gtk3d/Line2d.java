@@ -333,7 +333,7 @@ public class Line2d extends Curve2d {
 	 *   
 	 */
 
-	public LineSegment getLineSegment() {
+	public LineSegment geetLineSegment() {
 		Point3d stPoint3d = new Point3d(startPoint.x, startPoint.y, 0.0);
 		Point3d endPoint3d = new Point3d(endPoint.x, endPoint.y, 0.0);
 		return new LineSegment(stPoint3d, endPoint3d);
@@ -728,7 +728,7 @@ public class Line2d extends Curve2d {
 	}
 
 	public LinkedList getShapeList(DrawWFPanel canvas) {
-		return getLineSegment().geetShapeList(canvas);
+		return geetLineSegment().geetShapeList(canvas);
 	}
 
 	public Line2d transform(Matrix3d transformationMatrix) {
@@ -751,7 +751,7 @@ public class Line2d extends Curve2d {
 	}
 
 	public CurveSegment getCurveSegment(Matrix4d transformationMatrix) {
-		return getLineSegment().transform(transformationMatrix);
+		return geetLineSegment().transform(transformationMatrix);
 	}
 
 	public double getLength() {

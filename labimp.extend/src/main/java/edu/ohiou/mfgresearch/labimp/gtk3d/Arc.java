@@ -278,7 +278,7 @@ public class Arc extends CurveSegment {
 		this.yAxis = new Vector3d(yAxis[0],yAxis[1], yAxis[2]);
 	}
 
-	public DefaultMutableTreeNode getTree() {
+	public DefaultMutableTreeNode geetTree() {
 		return new DefaultMutableTreeNode(this);
 	}
 

@@ -189,7 +189,7 @@ public class LineSegment extends CurveSegment  {
 		this.endPoint = new Point3d(endPoint[0],endPoint[1],endPoint[2] );
 	}
 
-   public Line2d getLine2d () {
+   public Line2d geetLine2d () {
      return getLine2d(GeometryConstants.Z_VECTOR);
    }
 
