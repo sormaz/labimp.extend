@@ -634,4 +634,15 @@ public class Profile3d extends ImpObject {
 		prof.display("original profile", new Dimension(650, 700), JFrame.EXIT_ON_CLOSE);
 		System.out.println("" + prof);
 	}
+
+	public boolean isClosed() {
+		// TODO Auto-generated method stub
+		try {
+			return transformTo2d().isClosedProfile();
+		} catch (Exception e ) {
+			// should not happen here is profile is well formed
+			System.err.println("The exception in isClosed of Profile3d, something is wrong");
+			return false;
+		}
+	}
 }
