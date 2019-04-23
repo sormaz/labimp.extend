@@ -44,7 +44,9 @@
     </repository>
   </repositories>	
   
-<!--    	<build>
+<!-- Settings to run main class from maven commond line mvn exec:java   --> 
+<!--    	
+	<build>
         <plugins>
 			  <plugin>
 			    <groupId>org.apache.maven.plugins</groupId>
