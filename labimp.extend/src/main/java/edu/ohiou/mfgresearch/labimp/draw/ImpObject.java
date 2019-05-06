@@ -361,8 +361,8 @@ public abstract class ImpObject extends ViewObject
 	
 	public ImpXmlWriter findXMLWriter()  {
 		ImpXmlWriter writer = null;
-		String writerName = properties
-		.getProperty(this.getClass().getName() + ".XML_WRITER", "edu.ohiou.implanner.parts.MfgPartModel$MfgPartWriter");
+		String writerName = getProperty("XML_WRITER");
+
 		Object[] args = { this };
 		if (writerName != null && !writerName.equalsIgnoreCase("")) {
 			try {
