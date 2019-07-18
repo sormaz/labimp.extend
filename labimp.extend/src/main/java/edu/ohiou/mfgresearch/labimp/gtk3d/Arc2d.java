@@ -650,7 +650,7 @@ public class Arc2d extends Curve2d {
 			this.getEndAngle());
 	}
 
-	public LinkedList getDrawList() {
+	public LinkedList geetDrawList() {
 		LinkedList arcLines2d = computeArcLines();
 		LinkedList lineList = new LinkedList();
 		for (Iterator iter = arcLines2d.iterator(); iter.hasNext();) {
