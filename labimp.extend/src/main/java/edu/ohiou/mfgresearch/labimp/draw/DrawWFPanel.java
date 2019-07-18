@@ -64,6 +64,8 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	WorldCS wcs = new WorldCS(5, 6, 7);
 	Collection shapeList;
 	boolean needsUpdate = true;
+	
+	Point2D.Double origin; // = new Point2D.Double(100, 100);
 
 	// components of viewPanel.
 	FlowLayout flowLayout1 = new FlowLayout();
@@ -123,6 +125,21 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 		scale = inScale;
 		this.setViewTransform();
 		init();
+		addComponentListener ( new ComponentAdapter ()
+	    {
+	        public void componentShown ( ComponentEvent e )
+	        {
+//	    		origin = new Point2D.Double(drawPanel.getWidth() / 2.0, drawPanel.getHeight() / 2.0 );
+	            System.out.println ( "Component shown" );
+	        }
+	        public void componentResized( ComponentEvent e )
+	        {
+	        	System.out.println ( "Component resized" );
+	        	if (origin == null)
+	        		origin = new Point2D.Double(drawPanel.getWidth() / 2.0, drawPanel.getHeight() / 2.0 );
+	            
+	        }
+	    } );
 	}
 
 	// SELECTORS
@@ -192,16 +209,16 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 		Point2D.Double newP;
 		//    ImpObject.doNothing(this, "panel" + drawPanel);
 		//    ImpObject.doNothing(this, "point" + p);
-		newX = drawPanel.getWidth() / 2.0 + p.x * scale;
-		newY = drawPanel.getHeight() / 2.0 - p.y * scale;
+		newX = origin.x + p.x * scale;
+		newY = origin.y - p.y * scale;
 		newP = new Point2D.Double(newX, newY);
 		return newP;
 	}
 
 	public Point3d calcInverseDisplayTransform(Point2D.Double p) {
 		double newX, newY;
-		newX = (p.x - drawPanel.getWidth() / 2.0) / scale;
-		newY = (drawPanel.getHeight() / 2.0 - p.y) / scale;
+		newX = (p.x - origin.x) / scale;
+		newY = (origin.y - p.y) / scale;
 		return new Point3d(newX, newY, 0);
 	}
 
@@ -259,7 +276,8 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		this.createTargetTable();
+//		if (isVisible())
+//			this.createTargetTable();
 
 	}
 
@@ -500,6 +518,7 @@ public void addFillShapes (Color color, Collection newShapes) {
 	}
 
 	public void repaint() {
+		if (!isVisible()) return;
 		createTargetTable();
 		super.repaint();
 	}
@@ -533,6 +552,7 @@ public void addFillShapes (Color color, Collection newShapes) {
 			applet.display(inTitle, inSize, appletClosing);
 		else
 			applet.display(inTitle, inSize, appletClosing);
+		// to set origin to the center after size is known
 	}
 
 	/** display method taking title of applet.
@@ -549,7 +569,7 @@ public void addFillShapes (Color color, Collection newShapes) {
 	 */
 
 	public void display() {
-	  applet.display();
+	  display("Bezier curve", getAppletSize(), JFrame.DISPOSE_ON_CLOSE);
 	}
 	
 	void viewButton_actionPerformed() {
@@ -608,7 +628,6 @@ public void addFillShapes (Color color, Collection newShapes) {
 	}
 
 	private void jbInit() throws Exception {
-
 		ActionListener action = new DrawWFPanel_viewButton_actionAdapter(this);
 		//    drawPanel.setPreferredSize(new Dimension(1600, 1400));
 		drawPanel.setBackground(Color.white);
@@ -616,7 +635,7 @@ public void addFillShapes (Color color, Collection newShapes) {
 		//    JScrollPane scrollPanel = new JScrollPane (drawPanel);
 		//    scrollPanel.setPreferredSize(new Dimension (600, 400));
 		this.setLayout(new BorderLayout());
-		this.setBorder(BorderFactory.createLineBorder(Color.black));
+//		this.setBorder(BorderFactory.createLineBorder(Color.black));
 		viewPointLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		errorLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		errorLabel.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -624,7 +643,14 @@ public void addFillShapes (Color color, Collection newShapes) {
 		this.add(drawPanel, BorderLayout.CENTER);
 		this.add(viewPanel, BorderLayout.SOUTH);
 		GraphicsToolBar myToolbar = new GraphicsToolBar(this);
-		myToolbar.addButtonOptions(GraphicsToolBar.ALL);
+		myToolbar.removeButtonOptions(GraphicsToolBar.ALL);
+		myToolbar.addButtonOptions(GraphicsToolBar.PAN_DOWN + 
+									GraphicsToolBar.PAN_LEFT + 
+									GraphicsToolBar.PAN_RIGHT +
+									GraphicsToolBar.PAN_UP +
+									GraphicsToolBar.ZOOM_IN +
+									GraphicsToolBar.ZOOM_OUT + 
+									GraphicsToolBar.ZOOM_ALL);
 		myToolbar.setFloatable(true);
 		this.add(myToolbar, BorderLayout.NORTH);
 		viewPanel.setBackground(BACKGROUND_COLOR);
@@ -1166,13 +1192,16 @@ for (Iterator colorItr = colors.iterator(); colorItr.hasNext();) {
 	
 	public void scale(double sx, double sy) {
 		// TODO Auto-generated method stub
-		
+		setScale(scale *= sx);
+		repaint();
 	}
 
 	
 	public void translate(double tx, double ty) {
-		// TODO Auto-generated method stub
-		
+		origin.x = origin.x + 100 * tx;
+		origin.y = origin.y + 100* ty;
+		needsUpdate = true;
+		repaint();
 	}
 
 	
