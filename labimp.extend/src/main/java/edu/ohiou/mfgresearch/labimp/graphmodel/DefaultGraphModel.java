@@ -307,10 +307,21 @@ public class DefaultGraphModel implements GraphModel {
  * 
  * @deprecated in new graph model use listeners to achieve this
  *
- */	public void display () {
-		GraphRenderer renderer = new GraphRenderer(this, false);		
-		renderer.display();
+ */
+	public void display () {
+		display(toString());
 	}
+
+	
+	/**
+	 * 
+	 * @deprecated in new graph model use listeners to achieve this
+	 *
+	 */
+		public void display (String title) {
+			GraphRenderer renderer = new GraphRenderer(this, false);		
+			renderer.display(title);
+		}
 
 	
 
