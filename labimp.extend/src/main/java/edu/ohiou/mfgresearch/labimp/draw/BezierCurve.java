@@ -91,22 +91,22 @@ public class BezierCurve extends ImpObject {
 
 	  }
 
-  public void paintComponent (Graphics2D g, DrawWFPanel canvas)
-  {
-    LinkedList list = getShapeContour (canvas);
-    g.setColor(color);
-    for (Iterator itr = list.iterator(); itr.hasNext();){
-      g.draw ((Shape) itr.next() );
-    }
-    g.setColor(controlColor);
-    int size = points.size();
-    for (int i=0;i < size; i++)
-    {
-      LineSegment line = new LineSegment((Point3d)points.get(i),
-      (Point3d)points.get((i+1)%size));
-      g.draw(line.createDisplayLine(canvas));
-    }
-  }
+//  public void paintComponent (Graphics2D g, DrawWFPanel canvas)
+//  {
+//    LinkedList list = getShapeContour (canvas);
+//    g.setColor(color);
+//    for (Iterator itr = list.iterator(); itr.hasNext();){
+//      g.draw ((Shape) itr.next() );
+//    }
+//    g.setColor(controlColor);
+//    int size = points.size();
+//    for (int i=0;i < size; i++)
+//    {
+//      LineSegment line = new LineSegment((Point3d)points.get(i),
+//      (Point3d)points.get((i+1)%size));
+//      g.draw(line.createDisplayLine(canvas));
+//    }
+//  }
 
 
   public LinkedList getPointSet () {
