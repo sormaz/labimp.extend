@@ -31,7 +31,7 @@ public class TestJugs extends WaterJugs {
 		node = new DefaultMutableTreeNode(this);
 	}
 
-	public LinkedList getDrawList() {
+	public LinkedList geetDrawList() {
 		LinkedList shapes = new LinkedList();
 		shapes.add(new Line2D.Double(
 			new Point2D.Double(0, bigCapacity),
