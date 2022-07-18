@@ -150,7 +150,7 @@ public class WaterJugs extends DefaultSpaceState {
   }
 
 	public String toString() {
-		return "[" + index +"],Big Jug: " + 
+		return super.toString() + "Big Jug: " + 
       bigState + ", Small Jug: " + smallState +"[" + hashCode() + "]";
 	}
 }
