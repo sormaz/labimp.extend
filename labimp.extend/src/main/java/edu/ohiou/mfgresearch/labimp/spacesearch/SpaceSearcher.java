@@ -509,6 +509,7 @@ public class SpaceSearcherPanel extends ViewPanel {
     BorderLayout bl = new BorderLayout();
     JPanel searchTree = new JPanel(bl);
     JPanel solutionPane = new JPanel(new BorderLayout());
+    JPanel legendPanel;
     JMenuBar menuBar = new JMenuBar();
     JScrollPane scrForCurrState = new JScrollPane();
     JScrollPane scrForInitState = new JScrollPane();
@@ -1209,6 +1210,23 @@ public class SpaceSearcherPanel extends ViewPanel {
       goalStatePanel.add(gStateLabel, BorderLayout.NORTH);
       selectedStatePanel.add(selectedStateLabel, BorderLayout.NORTH);
     }
+    
+    void initLegendPanel () {
+    	legendPanel = new JPanel();
+    	JLabel currLabel = new JLabel("current");
+    	currLabel.setForeground(CURRENT_COLOR);
+    	legendPanel.add(currLabel);
+    	JLabel openLabel = new JLabel("open");
+    	openLabel.setForeground(OPEN_COLOR);
+    	legendPanel.add(openLabel);
+    	JLabel closedLabel = new JLabel("closed");
+    	closedLabel.setForeground(CLOSED_COLOR);
+    	legendPanel.add(closedLabel);
+    	JLabel goalLabel = new JLabel("goal");
+    	goalLabel.setForeground(GOAL_COLOR);
+    	legendPanel.add(goalLabel);
+
+    }
 
     void initialiseTree() {
       /**
@@ -1224,6 +1242,8 @@ public class SpaceSearcherPanel extends ViewPanel {
       treeView = new JScrollPane(tree);
       treeView.getViewport().add(tree, null);
       searchTree.add(treeView, BorderLayout.CENTER);
+      initLegendPanel();
+      searchTree.add(legendPanel, BorderLayout.SOUTH);
       tree.setEditable(true);
       tree.getSelectionModel().setSelectionMode(
           TreeSelectionModel.SINGLE_TREE_SELECTION);
