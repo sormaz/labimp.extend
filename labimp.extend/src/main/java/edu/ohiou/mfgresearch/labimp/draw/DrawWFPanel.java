@@ -134,7 +134,7 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	        }
 	        public void componentResized( ComponentEvent e )
 	        {
-	        	System.out.println ( "Component resized" );
+//	        	System.out.println ( "Component resized" );
 	        	if (origin == null)
 	        		origin = new Point2D.Double(drawPanel.getWidth() / 2.0, drawPanel.getHeight() / 2.0 );
 	            
