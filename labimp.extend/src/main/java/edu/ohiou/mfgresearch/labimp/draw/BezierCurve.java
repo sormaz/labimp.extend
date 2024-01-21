@@ -21,12 +21,12 @@ import java.awt.Shape;
  */
 
 public class BezierCurve extends ImpObject {
-  List points = new LinkedList();
+  List<Point3d> points = new LinkedList();
   int nsteps = 20;
   Color controlColor = Color.green;
 
-  public BezierCurve(List points) {
-    this.points = new LinkedList (points);
+  public BezierCurve(List<Point3d> points) {
+    this.points = new LinkedList<Point3d> (points);
     color = Color.blue;
   }
   public static void main(String[] args) {
@@ -36,7 +36,7 @@ public class BezierCurve extends ImpObject {
     Point3d p4 = new Point3d(3,0,0);
     Point3d p5 = new Point3d(5,1,0);
     Point3d p6= new Point3d(8,0,0);
-    LinkedList list = new LinkedList();
+    LinkedList<Point3d> list = new LinkedList<Point3d>();
     list.add(p1);
     list.add(p2);
     list.add(p3);
@@ -63,7 +63,7 @@ public class BezierCurve extends ImpObject {
   public LinkedList getControlContour(DrawWFPanel canvas) {
 	    LinkedList list = new LinkedList();
 	    for (int i = 0; i < points.size(); i++) {
-	        LineSegment line = new LineSegment ((Point3d) points.get(i), (Point3d)points.get((i+1 )% points.size()));
+	        LineSegment line = new LineSegment (points.get(i), points.get((i+1 )% points.size()));
 	        list.addAll(line.geetShapeList (canvas));
 	      }
 	    return list;
@@ -80,6 +80,7 @@ public class BezierCurve extends ImpObject {
 	    if (color == null) {
 	      String propColor = properties.getProperty(this.getClass().getName() +
 	                                                ".color", "000000");
+	      
 	      color = new Color(Integer.parseInt(propColor, 16));
 	    }
 
