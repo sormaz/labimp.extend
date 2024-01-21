@@ -65,7 +65,7 @@ public class DrawWFPanel extends JPanel implements DrawableWF, Scalable {
 	Collection shapeList;
 	boolean needsUpdate = true;
 	
-	Point2D.Double origin; // = new Point2D.Double(100, 100);
+	Point2D.Double origin = new Point2D.Double(100, 100);
 
 	// components of viewPanel.
 	FlowLayout flowLayout1 = new FlowLayout();
