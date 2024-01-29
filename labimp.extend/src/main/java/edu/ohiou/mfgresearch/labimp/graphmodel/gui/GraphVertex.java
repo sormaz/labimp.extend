@@ -28,7 +28,7 @@ public class GraphVertex implements Drawable2D {
 	private GraphNode node;
 	private Shape nodeShape;
 	private Draw2DPanel canvas;
-	private Color color = Color.RED;
+	private Color color = Color.BLUE;
 	private Color fillColor = Color.YELLOW;
 	private Point2D.Double nodeLocation;
 	private boolean isDefaultShape = true;
@@ -156,8 +156,24 @@ public class GraphVertex implements Drawable2D {
 			makeDefaultShape();
 			//		System.out.println("After makeDefaultShape: "+ ((Ellipse2D)nodeShape).getCenterX()+", "+ ((Ellipse2D)nodeShape).getCenterY());
 		}
-		canvas.addDrawShapes(color, geetDrawList());
+		canvas.addDrawShapes(getUserColor(), geetDrawList());
 		canvas.addFillShapes(fillColor, geetFillList());
+	}
+
+	private Color getUserColor() {
+		// TODO Auto-generated method stub
+		Object user = node.getUserObject();
+		String cString = "";
+		try {
+			cString = ViewObject.getProperty(user.getClass(), "COLOR");
+			return new Color (Integer.parseInt(cString, 16));
+		} catch (NumberFormatException e) {
+			System.err.println("Property format is incorrect, " + cString + "it does not get integer");
+			return new Color(0x000000);
+		} catch (NullPointerException e) {
+			System.err.println("Property is COLOR is not defined for class" + user.getClass() + " in property file");
+			return new Color (0xff0000);
+		}
 	}
 
 	@SuppressWarnings("unchecked")
