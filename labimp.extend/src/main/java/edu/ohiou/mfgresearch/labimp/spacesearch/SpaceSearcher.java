@@ -80,7 +80,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
 
   public SpaceSearcher(Searchable initial, Searchable goal) {
     initialState = initial;
-//    currentState = initial;
+    currentState = initial;
     goalState = goal;
 
     if (searchOrder == NOT_DEFINED) {
@@ -277,6 +277,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
     //((Viewable)currentState).setColor (CLOSED_COLOR);
 //  ''''''''''JING HUANG'''''''''''''''''''''''''''' 
     closed.add(getCurrentState());
+    System.out.println (" ------ new state ----");
     System.out.println("old current state:" + getCurrentState());
     System.out.println("old open:" + getOpen());
     // current = open.first
