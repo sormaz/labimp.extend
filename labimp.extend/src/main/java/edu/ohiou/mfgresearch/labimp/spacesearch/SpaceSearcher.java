@@ -300,6 +300,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
        // ((Viewable)goalState).setColor (GOAL_COLOR);
 //      ''''''''''JING HUANG''''''''''''''''''''''''''''          
       }
+      System.out.println ("\n >>>> Current goal is " + goalState);
       setHasReachedGoal(true);
       return goalState;
     }
@@ -315,7 +316,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
 //      goalState = currentState;
 //      ((Viewable)goalState).setColor (GOAL_COLOR);
 //    }
-    LinkedList newStates = (LinkedList) getCurrentState().makeNewStates();
+    LinkedList newStates = new LinkedList(getCurrentState().makeNewStates());
     System.out.println("new states: " + newStates);
     removeOldStates(newStates, getOpen());
     removeOldStates(newStates, closed);
@@ -908,11 +909,13 @@ public class SpaceSearcherPanel extends ViewPanel {
             runOneStep_actionPerformed(e);
             numberSteps--;
             System.out.println("run step" + numberSteps);
+            refreshVisuals();
           }
+          
         } else {
-          System.out.println("problem not selected or search type not set");
+          System.err.println("\nProblem not selected or search type not set");
         }  
-      refreshVisuals();
+     
 
     }
 
