@@ -1318,8 +1318,12 @@ public class SpaceSearcherPanel extends ViewPanel {
 
     public DefaultMutableTreeNode createNodes(Searchable state) {
       DefaultMutableTreeNode node = state.getNode();
+      System.out.print("This is a test: "+state);
       for (Iterator itr = children.iterator(); itr.hasNext();) {
-        node.add(((DefaultSpaceState) itr.next()).getNode());
+    	  DefaultSpaceState dss= (DefaultSpaceState)itr.next();
+    	  System.out.print("This is a second test: "+ dss);
+    	  
+        node.add(dss.getNode());
       }
       if (node.getChildCount() != 0) {
         tree.scrollPathToVisible(new TreePath(
