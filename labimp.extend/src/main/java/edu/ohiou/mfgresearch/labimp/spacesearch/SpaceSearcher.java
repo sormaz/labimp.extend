@@ -202,6 +202,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
 
     if (currentState.isSearchComplete(this)) {
         s.goalState = currentState;
+        children = new LinkedList(); // sormaz 022624
         ((Viewable)s.goalState).settColor (SpaceSearcher.GOAL_COLOR);
 
     return true;
@@ -1018,6 +1019,11 @@ public class SpaceSearcherPanel extends ViewPanel {
                 .geettPanel(), BorderLayout.CENTER);
           }
           // dsormaz modified current state to init state to enanble tree update
+          int index = SpaceSearcher.this.getCurrentState().getIndex();
+          if (index == 65) {
+        	  int a = 1;
+        System.out.println (a);
+          }
           createNodes(SpaceSearcher.this.getCurrentState());
 //          tree.setModel(new DefaultTreeModel (createNodes(SpaceSearcher.this.initialState)));
           this.currentStatePanel.revalidate();
@@ -1318,8 +1324,10 @@ public class SpaceSearcherPanel extends ViewPanel {
 
     public DefaultMutableTreeNode createNodes(Searchable state) {
       DefaultMutableTreeNode node = state.getNode();
+
       for (Iterator itr = children.iterator(); itr.hasNext();) {
-        node.add(((DefaultSpaceState) itr.next()).getNode());
+    	  DefaultSpaceState dss= (DefaultSpaceState)itr.next();
+    	  node.add(dss.getNode());
       }
       if (node.getChildCount() != 0) {
         tree.scrollPathToVisible(new TreePath(
@@ -1373,5 +1381,10 @@ public class SpaceSearcherPanel extends ViewPanel {
     }
 
   }
+
+public void setSearchOrder(int searchOrder) {
+	this.searchOrder = searchOrder;
+	
+}
 
   }
