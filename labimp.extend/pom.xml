@@ -40,7 +40,7 @@
     <repository>
       <id>MavenRepoTest</id>
       <name>MavenRepoTest</name>
-      <url>file://C:\Users\dusan\Documents\GitHub\MavenRepoTest\</url>
+      <url>file://C:\Users\dusan\Documents\gitHub\MavenRepoTest\</url>
     </repository>
   </repositories>	
   
