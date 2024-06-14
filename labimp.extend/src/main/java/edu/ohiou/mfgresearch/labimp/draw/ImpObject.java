@@ -417,13 +417,13 @@ public abstract class ImpObject extends ViewObject
 				return cs.geetShapeList(canvas);
 			} else {
 				System.out
-					.println("Method 'public LinkedList getShapeList(DrawWFPanel canvas)' should be implemented in "
+					.println("Method 'public LinkedList geetShapeList(DrawWFPanel canvas)' should be implemented in "
 						+ this.getClass().toString());
 				if (panel != null && panel.getComponentCount() < 2)
 					panel
 						.add(new JLabel(
 							this.getClass().toString()
-								+ " needs to implement method 'public LinkedList getShapeList(DrawWFPanel canvas)'"));
+								+ " needs to implement method 'public LinkedList geetShapeList(DrawWFPanel canvas)'"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
