@@ -171,7 +171,7 @@ public class GraphVertex implements Drawable2D {
 			System.err.println("Property format is incorrect, " + cString + "it does not get integer");
 			return new Color(0x000000);
 		} catch (NullPointerException e) {
-			System.err.println("Property is COLOR is not defined for class" + user.getClass() + " in property file, setting RED");
+//			System.err.println("Property is COLOR is not defined for class" + user.getClass() + " in property file, setting RED");
 			return new Color (0xff0000);
 		}
 	}
