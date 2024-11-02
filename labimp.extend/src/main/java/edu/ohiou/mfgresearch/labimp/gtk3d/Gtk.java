@@ -47,13 +47,16 @@ public class Gtk {
   public static double round (double input, int precision) {
     double temp = input;
 
-    for (int i =0; i<precision; i++) {
-      temp *= 10.;
-    }
-    temp = Math.round(temp);
-    for (int i =0; i<precision; i++) {
-      temp /= 10.;
-    }
+//    for (int i =0; i<precision; i++) {
+//      temp *= 10.;
+//    }
+    temp *= Math.pow(10, precision);
+    long longTemp = Math.round(temp);
+    temp = longTemp;
+//    for (int i =0; i<precision; i++) {
+//      temp /= 10.;
+//    }
+    temp /= Math.pow(10, precision);
     return temp;
   }
 
