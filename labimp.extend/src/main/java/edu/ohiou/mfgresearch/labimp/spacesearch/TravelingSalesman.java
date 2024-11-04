@@ -300,7 +300,7 @@ public class TravelingSalesman extends ComparableSpaceState {
 
 	public static void main(String[] args) {
     try {
-    	File f = chooseFile("CSV_FILE", "Notepad++ or Excel", "Choose TSP problem file");
+    	File f = chooseFile("CSV", "Notepad++ or Excel", "Choose TSP problem file");
     	if (f == null) {
          readFile(TravelingSalesman.class.
 //          getResource("ts8x8-symmetric-s1.csv"));
