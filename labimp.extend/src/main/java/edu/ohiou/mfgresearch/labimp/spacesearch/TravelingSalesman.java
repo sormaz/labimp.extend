@@ -523,19 +523,6 @@ class MinRowHeuristic implements HeuristicFunction {
 }
 
 
-
-
-
-class BestFirstHeuristic implements HeuristicFunction {
-	  TravelingSalesman state;
-	  public BestFirstHeuristic (ComparableSpaceState state) {
-	    this.state = (TravelingSalesman)state; 
-	  }
-	  public double evaluate () {
-	    return 0;
-	}
-}
-
 class MinRowColHeuristic implements HeuristicFunction {
 	  TravelingSalesman state;
 	  public MinRowColHeuristic  (ComparableSpaceState state) {
