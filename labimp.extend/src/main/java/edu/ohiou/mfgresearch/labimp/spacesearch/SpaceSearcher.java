@@ -66,7 +66,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
   public static final Color CLOSED_COLOR = Color.red;
   public static final Color OPEN_COLOR = Color.blue;
   public static final Color CURRENT_COLOR = Color.magenta;
-  public static final Color GOAL_COLOR = Color.green;
+  public static final Color GOAL_COLOR = new Color(0x6aa68b);
 
   //SpaceSearcherPanel sssPanel = new SpaceSearcherPanel();
 //JPanel basePanel = new JPanel();
