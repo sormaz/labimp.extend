@@ -1,13 +1,6 @@
 package edu.ohiou.mfgresearch.labimp.spacesearch;
 
-/**
- * Title:
- * Description:
- * Copyright:    Copyright (c) 2001
- * Company:
- * @author
- * @version 1.0
- */
+
 import edu.ohiou.mfgresearch.labimp.basis.ViewObject;
 import edu.ohiou.mfgresearch.labimp.basis.Viewable;
 
@@ -33,6 +26,7 @@ import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.*;
 
 import edu.ohiou.mfgresearch.labimp.basis.*;
+
 
 /**
  *
@@ -892,6 +886,10 @@ public class SpaceSearcherPanel extends ViewPanel {
     }
 
     void runAll_actionPerformed(ActionEvent e) {
+    	if (isDone()) {
+    		JOptionPane.showMessageDialog(this, "Open is empty or/and goal has been reached", "Space search is done", JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	else {
       statesPane.setSelectedComponent(this.scrForCurrState);
       if (problemSelected && setSearchType) {
         while (!hasReachedGoal()) {
@@ -904,8 +902,13 @@ public class SpaceSearcherPanel extends ViewPanel {
       }
       refreshVisuals();
     }
+    }
 
     void runNSteps_actionPerformed(ActionEvent e) {
+    	if (isDone()) {
+    		JOptionPane.showMessageDialog(this, "Open is empty or/and goal has been reached", "Space search is done", JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	else {
       if (problemSelected && setSearchType) {
           while (numberSteps > 0) {
             runOneStep_actionPerformed(e);
@@ -918,10 +921,14 @@ public class SpaceSearcherPanel extends ViewPanel {
           System.err.println("\nProblem not selected or search type not set");
         }  
      
-
+    	}
     }
 
     void runOneStep_actionPerformed(ActionEvent e) {
+    	if (isDone()) {
+    		JOptionPane.showMessageDialog(this, "Open is empty or/and goal has been reached", "Space search is done", JOptionPane.INFORMATION_MESSAGE);
+    	}
+    	else {
       System.out.println("-------NEW STEP---- \nOpen Size: "
           + getOpen().size()
           + " Closed Size:"
@@ -931,12 +938,12 @@ public class SpaceSearcherPanel extends ViewPanel {
 //      System.out.println("Current state: " + currentState.toString());
       statesPane.setSelectedComponent(scrForCurrState);
       if (problemSelected && setSearchType) {
-        setCursor(new Cursor(Cursor.WAIT_CURSOR));
+    	  setCursor(new Cursor(Cursor.WAIT_CURSOR));
           SpaceSearcher.this.runSpaceSearch(1);
         setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
         refreshVisuals();
 //        System.out.println("open in ros after step: " + open.size() + open);
-//        System.out.println("current state in ros after step: " + currentState);
+//      System.out.println("current state in ros after step: " + currentState);
 //        System.out.println("closed in ros after step: " + closed.size() + closed);
        
 //        dsormaz commented out to separate visuals from search 6/17/07
@@ -948,6 +955,7 @@ public class SpaceSearcherPanel extends ViewPanel {
 //        }
         //						System.out.println("current state in ros: "+currentState);
       }
+    }
     }
 
     void refreshVisuals() {
@@ -1385,6 +1393,10 @@ public class SpaceSearcherPanel extends ViewPanel {
 public void setSearchOrder(int searchOrder) {
 	this.searchOrder = searchOrder;
 	
+}
+
+public boolean isDone() {
+	return getOpen().isEmpty() || hasReachedGoal();
 }
 
   }
