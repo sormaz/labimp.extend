@@ -43,7 +43,7 @@ public class GeometryConstants extends GtkConstants {
 	public static final int INSIDE = 1;
 	public static final int ON_BOUNDARY = 0;
 	public static final int OUTSIDE = -1;
-	public static double EPSILON = 0.00001;
+	public static double EPSILON = 0.001; // dns changed to test pocket/slab mapping 7/5/24
   public static int ROUND_PRECISION = 6;
 	public static double BIG_NUMBER = 100;
 	public static final int HEIGHT = 1;
