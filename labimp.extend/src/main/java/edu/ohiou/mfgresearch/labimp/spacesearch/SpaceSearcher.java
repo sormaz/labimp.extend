@@ -191,7 +191,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
 //		    return null;
 		  } 
 		  setCurrentState(getOpen().first());
-		  getOpen().remove(getCurrentState());
+		 boolean removed = getOpen().remove(getCurrentState());
 		  ((Viewable)getCurrentState()).settColor (SpaceSearcher.CURRENT_COLOR);
 
     if (currentState.isSearchComplete(this)) {
@@ -1386,6 +1386,13 @@ public class SpaceSearcherPanel extends ViewPanel {
       }
 //      System.out.println("Contains:\n"  + state + "\n" + hs);
       return false;
+    }
+    public boolean remove (Object o) {
+    	HashSet<Searchable> hs = new HashSet<Searchable> (this);
+    	boolean res = hs.remove(o);
+    	this.clear();
+    	this.addAll(hs);
+    	return res;
     }
 
   }
