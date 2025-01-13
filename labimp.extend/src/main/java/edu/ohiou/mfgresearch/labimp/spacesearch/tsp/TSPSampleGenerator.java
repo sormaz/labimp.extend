@@ -1,4 +1,4 @@
-package edu.ohiou.mfgresearch.labimp.spacesearch;
+package edu.ohiou.mfgresearch.labimp.spacesearch.tsp;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -6,6 +6,10 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Random;
+
+import edu.ohiou.mfgresearch.labimp.spacesearch.DefaultSpaceState;
+import edu.ohiou.mfgresearch.labimp.spacesearch.HeuristicException;
+import edu.ohiou.mfgresearch.labimp.spacesearch.InformedSearcher;
 
 public class TSPSampleGenerator {
 	public int currentTSPSize;

@@ -1,10 +1,16 @@
-package edu.ohiou.mfgresearch.labimp.spacesearch;
+package edu.ohiou.mfgresearch.labimp.spacesearch.tsp;
 
 import edu.ohiou.mfgresearch.labimp.basis.ImpXmlHandler;
 import edu.ohiou.mfgresearch.labimp.basis.ImpXmlReader;
 import edu.ohiou.mfgresearch.labimp.basis.ViewObject;
 import edu.ohiou.mfgresearch.labimp.basis.Viewable;
 import edu.ohiou.mfgresearch.labimp.draw.ImpObject;
+import edu.ohiou.mfgresearch.labimp.spacesearch.ComparableSpaceState;
+import edu.ohiou.mfgresearch.labimp.spacesearch.HeuristicException;
+import edu.ohiou.mfgresearch.labimp.spacesearch.HeuristicFunction;
+import edu.ohiou.mfgresearch.labimp.spacesearch.InformedSearcher;
+import edu.ohiou.mfgresearch.labimp.spacesearch.Searchable;
+import edu.ohiou.mfgresearch.labimp.spacesearch.SpaceSearcher;
 import edu.ohiou.mfgresearch.labimp.table.SquareTableModel;
 import edu.ohiou.mfgresearch.labimp.table.TableCellGenerator;
 import java.util.LinkedList;
