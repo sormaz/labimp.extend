@@ -11,6 +11,7 @@ import java.util.Set;
 import edu.ohiou.mfgresearch.labimp.basis.ViewObject.ViewPanel;
 import java.util.Comparator;
 import edu.ohiou.mfgresearch.labimp.spacesearch.Searchable;
+import edu.ohiou.mfgresearch.labimp.spacesearch.tsp.TravelingSalesman;
 import edu.ohiou.mfgresearch.labimp.table.ClassNameRenderer;
 
 import java.util.*;
@@ -45,7 +46,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
   
   // make collections into sets
   private TreeSet<Searchable> open;
-  HashSet<Searchable> closed;
+  public HashSet<Searchable> closed;
 //  Collection<Searchable> newStates; // remove may not be needed
   public static final int NOT_DEFINED = 0;
   public static final int DEPTH_FIRST = 1;
@@ -195,7 +196,7 @@ abstract public class SpaceSearcher extends ViewObject implements Searchable {
 		  ((Viewable)getCurrentState()).settColor (SpaceSearcher.CURRENT_COLOR);
 
     if (currentState.isSearchComplete(this)) {
-        s.goalState = currentState;
+//        s.goalState = currentState;
         children = new LinkedList(); // sormaz 022624
         ((Viewable)s.goalState).settColor (SpaceSearcher.GOAL_COLOR);
 
@@ -1117,16 +1118,16 @@ public class SpaceSearcherPanel extends ViewPanel {
       clearStatePanels();
       problemSelected = true;
       menuActivated = true;
-      TravelingSalesman ts1 = new TravelingSalesman();
-      //						TravelingSalesman ts2 = new TravelingSalesman();
-      TravelingSalesman goal = new TravelingSalesman();
-      goal.visitedPath = new LinkedList(TravelingSalesman.cities);
-      goal.unvisitedCities = new LinkedList();
-      goal.totalDistance = 3000.0;
-      SpaceSearcher.this.initialState = ts1;
-      SpaceSearcher.this.goalState = goal;
-      SpaceSearcher.this.setCurrentState(ts1);
-      SpaceSearcher.this.initializeSearch();
+//      TravelingSalesman ts1 = new TravelingSalesman();
+//      //						TravelingSalesman ts2 = new TravelingSalesman();
+//      TravelingSalesman goal = new TravelingSalesman();
+//      goal.visitedPath = new LinkedList(TravelingSalesman.cities);
+//      goal.unvisitedCities = new LinkedList();
+//      goal.totalDistance = 3000.0;
+//      SpaceSearcher.this.initialState = ts1;
+//      SpaceSearcher.this.goalState = goal;
+//      SpaceSearcher.this.setCurrentState(ts1);
+//      SpaceSearcher.this.initializeSearch();
       initialiseStateLabels();
       initialiseTree();
       enableBestSearch();
