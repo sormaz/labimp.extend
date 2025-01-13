@@ -20,7 +20,7 @@ import java.util.Comparator;
 import edu.ohiou.mfgresearch.labimp.basis.Viewable;
 import edu.ohiou.mfgresearch.labimp.draw.ImpObject;
 import edu.ohiou.mfgresearch.labimp.spacesearch.Searchable;
-import edu.ohiou.mfgresearch.labimp.spacesearch.TravelingSalesman.TSComparator;
+
 import edu.ohiou.mfgresearch.labimp.draw.*;
 
 import java.util.*;
@@ -36,7 +36,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 abstract public class DefaultSpaceState extends ImpObject implements Searchable {
   
-  protected static int current =0;
+  public static int current =0;
   protected static boolean printIndex = false;
   public static String problemName = new String();
 
