@@ -31,8 +31,10 @@ Comparable {
 				}
 				s.goalState = s.getCurrentState();      
 				((Viewable)s.getCurrentState()).settColor (SpaceSearcher.GOAL_COLOR);
+				
 			}
-			if (s instanceof InformedSearcher) {
+			if (s.getOpen().isEmpty() || (s instanceof InformedSearcher)) {
+//				if (s instanceof InformedSearcher) { // this condition gives  hill climbing
 				s.setHasReachedGoal(true);
 				return true;
 			}
