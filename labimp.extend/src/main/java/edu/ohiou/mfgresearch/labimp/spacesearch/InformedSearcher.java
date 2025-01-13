@@ -112,13 +112,13 @@ public class InformedSearcher extends SpaceSearcher {
       return runSpaceSearch(numberOfSteps);
       }
       catch (RuntimeException rte) {
-    	  try { 
-    		TSPSampleGenerator.genFile("exception.txt");
-			TSPSampleGenerator.appendFile(TSPSampleGenerator.getfileName(2, "exception.txt"), rte.toString()  );
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//    	  try { 
+//    		TSPSampleGenerator.genFile("exception.txt");
+//			TSPSampleGenerator.appendFile(TSPSampleGenerator.getfileName(2, "exception.txt"), rte.toString()  );
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		rte.printStackTrace();
 		return null;
       }
