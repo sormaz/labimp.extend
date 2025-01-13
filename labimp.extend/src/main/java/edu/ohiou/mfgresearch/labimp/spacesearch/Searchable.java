@@ -4,7 +4,6 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import edu.ohiou.mfgresearch.labimp.spacesearch.TravelingSalesman.TSComparator;
 
 public interface Searchable {
 	public Set<Searchable> makeNewStates();
