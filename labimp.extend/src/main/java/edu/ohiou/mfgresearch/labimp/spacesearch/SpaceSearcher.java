@@ -1281,24 +1281,25 @@ public class SpaceSearcherPanel extends ViewPanel {
       DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree
       .getLastSelectedPathComponent();
       if (node != null) {
-        setCurrentState((Searchable) node.getUserObject());
-        //		    				if(currentState instanceof GTState)
-        //										SpaceSearcher.this.initializeKnwSearch(((GTState)currentState).getComparator());
-        Comparator comp = getComparator();
-        if (comp != null) {
-          SpaceSearcher.this
-          .initializeSearch();         
-        }     
+    	  Searchable state = (Searchable) node.getUserObject();
+//        setCurrentState((Searchable) node.getUserObject());
+//        //		    				if(currentState instanceof GTState)
+//        //										SpaceSearcher.this.initializeKnwSearch(((GTState)currentState).getComparator());
+//        Comparator comp = getComparator();
+//        if (comp != null) {
+//          SpaceSearcher.this
+//          .initializeSearch();         
+//        }     
 //        if (currentState instanceof TravelingSalesman) {
 //          SpaceSearcher.this
 //          .initializeKnwSearch(((TravelingSalesman) currentState)
 //              .getComparator());         
 //        }
-        setHasReachedGoal(false);
+//        setHasReachedGoal(false);
         this.selectedStatePanel.removeAll();
-        if (getCurrentState() instanceof Viewable) {
-          ((Viewable) SpaceSearcher.this.getCurrentState()).init();
-          JPanel localPanel =((Viewable)getCurrentState()).geettPanel();
+        if (state instanceof Viewable) {
+          ((Viewable) state).init();
+          JPanel localPanel =((Viewable)state).geettPanel();
           this.selectedStatePanel.add(localPanel,BorderLayout.CENTER);  
 //          if (currentState instanceof Drawable2D) {
 //            if (canvas != null) {
@@ -1309,11 +1310,11 @@ public class SpaceSearcherPanel extends ViewPanel {
         } 
         else {
           this.selectedStatePanel.add(
-              new JLabel(getCurrentState().toString()),
+              new JLabel(state.toString()),
               BorderLayout.CENTER);          
         }
         selectedStateLabel.setText("Selected State"
-            + getCurrentState().toString());
+            + state.toString());
         this.selectedStatePanel.add(
             this.selectedStateLabel,
             BorderLayout.NORTH);
