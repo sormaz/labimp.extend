@@ -33,6 +33,8 @@ Comparable {
 				((Viewable)s.getCurrentState()).settColor (SpaceSearcher.GOAL_COLOR);
 				
 			}
+			boolean goalBetter = s.goalState.isBetterThan(s.getOpen().first());
+			System.out.println("DNS 2025: Goal better then first in Open? " + goalBetter);
 			if (s.getOpen().isEmpty() || (s instanceof InformedSearcher)) {
 //				if (s instanceof InformedSearcher) { // this condition gives  hill climbing
 				s.setHasReachedGoal(true);
