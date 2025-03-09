@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.time.ZonedDateTime;
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
@@ -893,13 +894,19 @@ public class SpaceSearcherPanel extends ViewPanel {
     	else {
       statesPane.setSelectedComponent(this.scrForCurrState);
       if (problemSelected && setSearchType) {
+      	ZonedDateTime startTime = ZonedDateTime.now();
         while (!hasReachedGoal()) {
+
 //          System.out.println("in callback, comp: " + getOpen().comparator());
 //          System.out.println("in callback, current: " + getCurrentState());
 //          System.out.println("in callback, size:, " + getOpen().size());
 //          System.out.println("in callback, open: " + getOpen());
-          runOneStep_actionPerformed(e);
+     		
+          runOneStep_actionPerformed(e); 
         }
+        ZonedDateTime endTime = ZonedDateTime.now();
+        int duration = (endTime.getNano() - startTime.getNano())/1000000;
+  		System.out.println("DNS 2025 Duration from " + startTime + " to " + endTime + " is " + duration + " millisec");
       }
       refreshVisuals();
     }
