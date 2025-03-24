@@ -933,16 +933,19 @@ public class SpaceSearcherPanel extends ViewPanel {
     }
 
     void runOneStep_actionPerformed(ActionEvent e) {
+    	boolean printProgress = false;
     	if (isDone()) {
     		JOptionPane.showMessageDialog(this, "Open is empty or/and goal has been reached", "Space search is done", JOptionPane.INFORMATION_MESSAGE);
     	}
     	else {
-      System.out.println("-------NEW STEP---- \nOpen Size: "
-          + getOpen().size()
-          + " Closed Size:"
-          + +closed.size()
-          + " step : "
-          + stepCount++);
+    		if (printProgress) {
+			      System.out.println("-------NEW STEP---- \nOpen Size: "
+			          + getOpen().size()
+			          + " Closed Size:"
+			          + +closed.size()
+			          + " step : "
+			          + stepCount++);
+    		}
 //      System.out.println("Current state: " + currentState.toString());
       statesPane.setSelectedComponent(scrForCurrState);
       if (problemSelected && setSearchType) {
