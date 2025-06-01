@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
+import java.time.Duration;
 import java.time.ZonedDateTime;
 
 import javax.swing.*;
@@ -895,6 +896,7 @@ public class SpaceSearcherPanel extends ViewPanel {
       statesPane.setSelectedComponent(this.scrForCurrState);
       if (problemSelected && setSearchType) {
       	ZonedDateTime startTime = ZonedDateTime.now();
+      	int numSteps = 0;
         while (!hasReachedGoal()) {
 
 //          System.out.println("in callback, comp: " + getOpen().comparator());
@@ -903,10 +905,14 @@ public class SpaceSearcherPanel extends ViewPanel {
 //          System.out.println("in callback, open: " + getOpen());
      		
           runOneStep_actionPerformed(e); 
+          numSteps++;
         }
         ZonedDateTime endTime = ZonedDateTime.now();
-        int duration = (endTime.getNano() - startTime.getNano())/1000000;
-  		System.out.println("DNS 2025 Duration from " + startTime + " to " + endTime + " is " + duration + " millisec");
+//        int duration = (endTime.getNano() - startTime.getNano())/1000000;
+        long millis = Duration.between(startTime,  endTime).toMillis();
+        double minutes = millis/1000./60.;
+  		System.out.println("DNS 2025 Duration from " + startTime + " to " + endTime + " is " + minutes + " min");
+  		System.out.println("DNS Number of steps: " + numSteps);
       }
       refreshVisuals();
     }
